@@ -1,6 +1,6 @@
 name: cool_datepicker
 description: Cool datepicker ✨ This datepicker gives you cool animation, modern design, and you can customize colors and language for datepicker.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/joo6077/cool_datepicker
 
 environment:
@@ -9,6 +9,8 @@ environment:
 
 dependencies:
   flutter:
+    sdk: flutter
+  flutter_web_plugins:
     sdk: flutter
 
 dev_dependencies:
@@ -32,6 +34,9 @@ flutter:
         pluginClass: CoolDatepickerPlugin
       ios:
         pluginClass: CoolDatepickerPlugin
+      web:
+        pluginClass: CoolDatepickerWeb
+        fileName: cool_datepicker_web.dart
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
