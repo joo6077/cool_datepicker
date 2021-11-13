@@ -1,3 +1,7 @@
 ## 1.0.0
 
-* publish library.
+* Publish library.
+
+## 1.0.1
+
+* Support web
