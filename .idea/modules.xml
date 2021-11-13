@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cool_datepicker.iml" filepath="$PROJECT_DIR$/cool_datepicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/cool_datepicker_android.iml" filepath="$PROJECT_DIR$/android/cool_datepicker_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/android/cool_datepicker_example_android.iml" filepath="$PROJECT_DIR$/example/android/cool_datepicker_example_android.iml" />
+    </modules>
+  </component>
+</project>
