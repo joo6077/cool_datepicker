@@ -7,3 +7,6 @@
 ## 1.0.2
 
 * Support web
+## 1.0.2
+
+* Init between animation fixed

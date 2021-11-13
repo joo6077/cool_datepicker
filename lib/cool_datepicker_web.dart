@@ -31,7 +31,8 @@ class CoolDatepickerWeb {
       default:
         throw PlatformException(
           code: 'Unimplemented',
-          details: 'cool_datepicker for web doesn\'t implement \'${call.method}\'',
+          details:
+              'cool_datepicker for web doesn\'t implement \'${call.method}\'',
         );
     }
   }

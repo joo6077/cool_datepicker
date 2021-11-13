@@ -310,7 +310,7 @@ class CalendarState extends State<Calendar> with TickerProviderStateMixin {
         if (value.isSelected == SelectType.between ||
             value.isSelected == SelectType.start ||
             value.isSelected == SelectType.end) {
-          betweenControllerList[index].forward(from: 0);
+          betweenControllerList[index].forward(from: 1);
         }
       });
     } else {

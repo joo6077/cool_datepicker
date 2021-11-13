@@ -42,10 +42,9 @@ class _MyAppState extends State<MyApp> {
                 maxYear: 2100,
                 minYear: 1900,
                 calendarSize: 350,
-                isRange: false,
+                isRange: true,
                 limitCount: 3,
                 format: 'mm/dd/yyyy',
-                defaultValue: [DateTime.now()],
                 // defaultValue: {
                 //   'start': DateTime(2020, 9, 25),
                 //   'end': DateTime(2021, 11, 24)
