@@ -1,8 +1,8 @@
 # Cool datepicker
 
 <div align="center">
-<a href="https://pub.dev/packages/cool_datepicker/changelog" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/pub-v1.0.0-6771e4.svg"></a>
-<a href="https://pub.dev/packages/cool_dropdown/changelog" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/cool_dropdown-v1.4.0-6FCC76.svg"></a>
+<a href="https://pub.dev/packages/cool_datepicker" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/pub-v1.0.0-6771e4.svg"></a>
+<a href="https://pub.dev/packages/cool_dropdown" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/cool_dropdown-v1.4.0-6FCC76.svg"></a>
 <a href="https://opensource.org/licenses/MIT" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/license-MIT-blueviolet.svg"></a>
 <a href="https://flutter.dev/" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/platform-flutter-ff69b4.svg"></a>
 <a href="https://paypal.me/joo6077" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/paypal-donate-blue.svg"></a>
