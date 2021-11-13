@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the build method from the CalendarState class, for the Dart programming language.">
+  <title>build method - CalendarState class - calendar library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">cool_datepicker</a></li>
+    <li><a href="../../views_calendar/views_calendar-library.html">calendar</a></li>
+    <li><a href="../../views_calendar/CalendarState-class.html">CalendarState</a></li>
+    <li class="self-crumb">build method</li>
+  </ol>
+  <div class="self-name">build</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-method">build</span> method 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+<div>
+  <ol class="annotation-list">
+    <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
+  </ol>
+</div>
+
+<span class="returntype"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
+<span class="name ">build</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="build-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span></li>
+</ol>)
+
+      <div class="features">override</div>
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Describes the part of the user interface represented by this widget.</p>
+<p>The framework calls this method in a number of different situations. For
+example:</p>
+<ul>
+<li>After calling <a href="../../views_calendar/CalendarState/initState.html">initState</a>.</li>
+<li>After calling <a href="https://api.flutter.dev/flutter/widgets/State/didUpdateWidget.html">didUpdateWidget</a>.</li>
+<li>After receiving a call to <a href="https://api.flutter.dev/flutter/widgets/State/setState.html">setState</a>.</li>
+<li>After a dependency of this <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> object changes (e.g., an
+<a href="https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html">InheritedWidget</a> referenced by the previous <a href="../../views_calendar/CalendarState/build.html">build</a> changes).</li>
+<li>After calling <a href="https://api.flutter.dev/flutter/widgets/State/deactivate.html">deactivate</a> and then reinserting the <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> object into
+the tree at another location.</li>
+</ul>
+<p>This method can potentially be called in every frame and should not have
+any side effects beyond building a widget.</p>
+<p>The framework replaces the subtree below this widget with the widget
+returned by this method, either by updating the existing subtree or by
+removing the subtree and inflating a new subtree, depending on whether the
+widget returned by this method can update the root of the existing
+subtree, as determined by calling <a href="https://api.flutter.dev/flutter/widgets/Widget/canUpdate.html">Widget.canUpdate</a>.</p>
+<p>Typically implementations return a newly created constellation of widgets
+that are configured with information from this widget's constructor, the
+given <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a>, and the internal state of this <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> object.</p>
+<p>The given <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a> contains information about the location in the
+tree at which this widget is being built. For example, the context
+provides the set of inherited widgets for this location in the tree. The
+<a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a> argument is always the same as the <code>context</code> property of
+this <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> object and will remain the same for the lifetime of this
+object. The <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a> argument is provided redundantly here so that
+this method matches the signature for a <a href="https://api.flutter.dev/flutter/widgets/WidgetBuilder.html">WidgetBuilder</a>.</p>
+<h2 id="design-discussion">Design discussion</h2>
+<h3 id="why-is-the-build-method-on-state-and-not-statefulwidget">Why is the <a href="../../views_calendar/CalendarState/build.html">build</a> method on <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a>, and not <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a>?</h3>
+<p>Putting a <code>Widget build(BuildContext context)</code> method on <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> rather
+than putting a <code>Widget build(BuildContext context, State state)</code> method
+on <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> gives developers more flexibility when subclassing
+<a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a>.</p>
+<p>For example, <a href="https://api.flutter.dev/flutter/widgets/AnimatedWidget-class.html">AnimatedWidget</a> is a subclass of <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> that
+introduces an abstract <code>Widget build(BuildContext context)</code> method for its
+subclasses to implement. If <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> already had a <a href="../../views_calendar/CalendarState/build.html">build</a> method
+that took a <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> argument, <a href="https://api.flutter.dev/flutter/widgets/AnimatedWidget-class.html">AnimatedWidget</a> would be forced to provide
+its <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> object to subclasses even though its <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> object is an
+internal implementation detail of <a href="https://api.flutter.dev/flutter/widgets/AnimatedWidget-class.html">AnimatedWidget</a>.</p>
+<p>Conceptually, <a href="https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html">StatelessWidget</a> could also be implemented as a subclass of
+<a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> in a similar manner. If the <a href="../../views_calendar/CalendarState/build.html">build</a> method were on
+<a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> rather than <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a>, that would not be possible anymore.</p>
+<p>Putting the <a href="../../views_calendar/CalendarState/build.html">build</a> function on <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> rather than <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> also
+helps avoid a category of bugs related to closures implicitly capturing
+<code>this</code>. If you defined a closure in a <a href="../../views_calendar/CalendarState/build.html">build</a> function on a
+<a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a>, that closure would implicitly capture <code>this</code>, which is
+the current widget instance, and would have the (immutable) fields of that
+instance in scope:</p>
+<pre class="language-dart"><code class="language-dart">class MyButton extends StatefulWidget {
+  ...
+  final Color color;
+
+  @override
+  Widget build(BuildContext context, MyButtonState state) {
+    ... () { print("color: $color"); } ...
+  }
+}
+</code></pre>
+<p>For example, suppose the parent builds <code>MyButton</code> with <code>color</code> being blue,
+the <code>$color</code> in the print function refers to blue, as expected. Now,
+suppose the parent rebuilds <code>MyButton</code> with green. The closure created by
+the first build still implicitly refers to the original widget and the
+<code>$color</code> still prints blue even through the widget has been updated to
+green.</p>
+<p>In contrast, with the <a href="../../views_calendar/CalendarState/build.html">build</a> function on the <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> object, closures
+created during <a href="../../views_calendar/CalendarState/build.html">build</a> implicitly capture the <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> instance instead of
+the widget instance:</p>
+<pre class="language-dart"><code class="language-dart">class MyButtonState extends State&lt;MyButton&gt; {
+  ...
+  @override
+  Widget build(BuildContext context) {
+    ... () { print("color: ${widget.color}"); } ...
+  }
+}
+</code></pre>
+<p>Now when the parent rebuilds <code>MyButton</code> with green, the closure created by
+the first build still refers to <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> object, which is preserved across
+rebuilds, but the framework has updated that <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> object's <a href="https://api.flutter.dev/flutter/widgets/State/widget.html">widget</a>
+property to refer to the new <code>MyButton</code> instance and <code>${widget.color}</code>
+prints green, as expected.</p>
+<p>See also:</p>
+<ul>
+<li><a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a>, which contains the discussion on performance considerations.</li>
+</ul>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">@override
+Widget build(BuildContext context) {
+  &#47;&#47; 스크린 값
+  double _screenWidth = widget.datePickerIconPosition != null
+      ? widget.calendarSize
+      : widget.iconSize;
+  double _padding = _screenWidth * 0.025;
+  double _calendarHeight =
+      _screenWidth * 0.25 + _screenWidth &#47; 9 + _screenWidth * 6 &#47; 9;
+
+  return Material(
+    type: MaterialType.transparency,
+    child: wrapCalendar(
+      child: Container(
+        width: _screenWidth,
+        height: _calendarHeight,
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(_screenWidth * 0.025),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: _screenWidth * 0.001,
+                      blurRadius: _screenWidth * 0.05,
+                    ),
+                  ]),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(_screenWidth * 0.025),
+                child: Column(
+                  children: [
+                    AnimatedBuilder(
+                        animation: paddingController,
+                        builder: (BuildContext context, Widget? _) {
+                          return Container(
+                            padding: EdgeInsets.only(
+                                left: animationPadding != null
+                                    ? isRight
+                                        ? _padding
+                                        : animationPadding!.value
+                                    : _padding,
+                                right: animationPadding != null
+                                    ? !isRight
+                                        ? _padding
+                                        : animationPadding!.value
+                                    : _padding),
+                            color: widget.headerColor,
+                            width: _screenWidth,
+                            height: _screenWidth * 0.125,
+                            child: Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                arrowButton(
+                                  width: _screenWidth,
+                                  type: &#39;left&#39;,
+                                ),
+                                Center(
+                                  child: Row(
+                                    children: [
+                                      dropdown(
+                                        width: _screenWidth,
+                                        key: yearDropdown,
+                                        dropdownList: widget.years,
+                                        onChange: (selectedItem) {
+                                          setState(() {
+                                            yearValue = selectedItem;
+                                            setCalendar();
+                                            resetBetweenControllerList();
+                                            setPreSelected();
+                                          });
+                                        },
+                                        defaultValue: yearValue,
+                                        thisWidth: _screenWidth * 0.17,
+                                      ),
+                                      dropdown(
+                                        key: monthDropdown,
+                                        dropdownList: widget.monthLabelList,
+                                        onChange: (selectedItem) {
+                                          setState(() {
+                                            monthValue = selectedItem;
+                                            setCalendar();
+                                            resetBetweenControllerList();
+                                            setPreSelected();
+                                          });
+                                        },
+                                        defaultValue: monthValue,
+                                        width: _screenWidth,
+                                        thisWidth: widget
+                                                .maxMonthDropdownWidth +
+                                            (widget.datePickerIconPosition !=
+                                                    null
+                                                ? 20
+                                                : 0),
+                                      )
+                                    ].isReverse(
+                                        widget.isYearMonthDropdownReverse),
+                                  ),
+                                ),
+                                arrowButton(
+                                  width: _screenWidth,
+                                  type: &#39;right&#39;,
+                                )
+                              ],
+                            ),
+                          );
+                        }),
+                    Container(
+                      width: _screenWidth,
+                      height: _screenWidth &#47; 9,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(color: setDarkColor(), spreadRadius: 1)
+                        ],
+                        color: setDarkColor(),
+                      ),
+                      &#47;&#47; color: setDarkColor(),
+                      child: Row(
+                        children: widget.weekLabelList.map&lt;Widget&gt;((weekday) {
+                          return Container(
+                            width: _screenWidth &#47; 7,
+                            height: _screenWidth &#47; 9,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                weekday[&#39;label&#39;],
+                                style: TextStyle(
+                                  fontSize: _screenWidth * 0.033,
+                                  color: widget.isDark
+                                      ? weekday[&#39;color&#39;]
+                                                  .value
+                                                  .toRadixString(16) ==
+                                              &#39;ff333333&#39;
+                                          ? Colors.white
+                                          : weekday[&#39;color&#39;]
+                                      : weekday[&#39;color&#39;],
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    Container(
+                      width: _screenWidth,
+                      height: _screenWidth * 6 &#47; 9,
+                      color: setDarkColor(),
+                      child: GridView.count(
+                          physics: NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.zero,
+                          crossAxisCount: 7,
+                          shrinkWrap: true,
+                          childAspectRatio:
+                              (_screenWidth &#47; 7) &#47; (_screenWidth &#47; 9),
+                          children: calendarInfo.dates
+                              .mapIndexed&lt;Widget&gt;((date, index) {
+                            return widget.isRange
+                                ? range(
+                                    calendarInfo: calendarInfo,
+                                    date: date,
+                                    width: _screenWidth,
+                                    index: index,
+                                  )
+                                : single(
+                                    calendarInfo: calendarInfo,
+                                    date: date,
+                                    width: _screenWidth,
+                                  );
+                          }).toList()),
+                    ),
+                    Container(
+                      width: _screenWidth,
+                      height: _screenWidth * 0.125,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(color: setDarkColor(), spreadRadius: 1)
+                        ],
+                        color: setDarkColor(),
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: _screenWidth * 0.03,
+                          ),
+                          Expanded(
+                            child: widget.isRange
+                                ? ListView(
+                                    padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                    scrollDirection: Axis.horizontal,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          CustomPaint(
+                                            foregroundPainter: BottomBorderBox(
+                                                CurvedAnimation(
+                                                    parent: bottomBorderCtrl,
+                                                    curve:
+                                                        Curves.easeInQuart),
+                                                widget
+                                                    .bottomSelectedBorderColor),
+                                            child: AnimatedBuilder(
+                                                animation:
+                                                    bottomBorderExpandCtrl,
+                                                builder:
+                                                    (BuildContext context,
+                                                        Widget? _) {
+                                                  return Container(
+                                                    width:
+                                                        animationBorderExpand
+                                                            .value,
+                                                    height:
+                                                        bottomRangeBorderHeight,
+                                                    child: ListView(
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      shrinkWrap: true,
+                                                      physics:
+                                                          NeverScrollableScrollPhysics(),
+                                                      children: [
+                                                        SizedBox(
+                                                          width:
+                                                              _screenWidth *
+                                                                  0.02,
+                                                        ),
+                                                        Container(
+                                                          child:
+                                                              bottomRangeLabel(
+                                                            width:
+                                                                _screenWidth,
+                                                            target: datesRange
+                                                                .start,
+                                                            isStart: true,
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width:
+                                                              _screenWidth *
+                                                                  0.015,
+                                                        ),
+                                                        Center(
+                                                          child:
+                                                              ScaleTransition(
+                                                            scale: Tween&lt;
+                                                                        double&gt;(
+                                                                    begin: 0,
+                                                                    end: 1)
+                                                                .animate(CurvedAnimation(
+                                                                    parent:
+                                                                        bottomBorderCtrl,
+                                                                    curve: Curves
+                                                                        .easeOutBack)),
+                                                            child: Text(&#39;~&#39;,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        _screenWidth *
+                                                                            0.03,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color: widget.isDark
+                                                                        ? Colors
+                                                                            .white
+                                                                        : Color(
+                                                                            0xff333333))),
+                                                          ),
+                                                        ),
+                                                        AnimatedContainer(
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  300),
+                                                          width: datesRange
+                                                                      .end !=
+                                                                  null
+                                                              ? _screenWidth *
+                                                                  0.015
+                                                              : 0,
+                                                        ),
+                                                        Container(
+                                                          child:
+                                                              bottomRangeLabel(
+                                                            width:
+                                                                _screenWidth,
+                                                            target: datesRange
+                                                                .end,
+                                                            isStart: false,
+                                                          ),
+                                                        ),
+                                                        SizeTransition(
+                                                          sizeFactor: Tween&lt;
+                                                                      double&gt;(
+                                                                  begin: 0,
+                                                                  end: 1)
+                                                              .animate(CurvedAnimation(
+                                                                  parent:
+                                                                      bottomBorderCtrl,
+                                                                  curve: Curves
+                                                                      .easeOutBack)),
+                                                          axis:
+                                                              Axis.horizontal,
+                                                          axisAlignment: 5,
+                                                          child: Container(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width:
+                                                                _screenWidth *
+                                                                    0.06,
+                                                            child:
+                                                                GestureDetector(
+                                                              onTap: () {
+                                                                setState(() {
+                                                                  resetCalendar();
+                                                                  bottomBorderCtrl
+                                                                      .reverse();
+                                                                  bottomBorderExpandCtrl
+                                                                      .reverse();
+                                                                  setRangeSelect();
+                                                                });
+                                                              },
+                                                              child: Center(
+                                                                child:
+                                                                    Container(
+                                                                  width:
+                                                                      _screenWidth *
+                                                                          0.03,
+                                                                  height:
+                                                                      _screenWidth *
+                                                                          0.03,
+                                                                  child:
+                                                                      CustomPaint(
+                                                                    painter:
+                                                                        XButtonPaint(),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  );
+                                                }),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                : AnimatedList(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5),
+                                    key: bottomListKey,
+                                    scrollDirection: Axis.horizontal,
+                                    initialItemCount:
+                                        bottomSelectedItems!.length,
+                                    itemBuilder: (context, index, animation) {
+                                      return bottomButton(
+                                          context, index, animation);
+                                    }),
+                          ),
+                          SizedBox(
+                            width: _screenWidth * 0.03,
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: _screenWidth * 0.03,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  widget.onSelected(selectedItemsHistory);
+                                  widget
+                                      .getSelectedItems(selectedItemsHistory);
+                                  widget.closeCalendar();
+                                },
+                                child: Container(
+                                  child: Text(
+                                    widget.cancelBtnLabel,
+                                    style: TextStyle(
+                                        fontSize: _screenWidth * 0.033,
+                                        color: widget.cancelFontColor,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              if (widget.isRange)
+                                AnimatedContainer(
+                                  duration: Duration(milliseconds: 700),
+                                  curve: Curves.easeOutQuad,
+                                  width: (datesRange.start != null)
+                                      ? (datesRange.end != null)
+                                          ? _screenWidth * 0.045
+                                          : _screenWidth * 0.075
+                                      : _screenWidth * 0.09,
+                                ),
+                              if (!widget.isRange)
+                                AnimatedContainer(
+                                  duration: Duration(milliseconds: 700),
+                                  curve: Curves.easeOutQuad,
+                                  width: (selectedItems!.length &gt; 0)
+                                      ? (selectedItems!.length &gt; 1)
+                                          ? _screenWidth * 0.045
+                                          : _screenWidth * 0.075
+                                      : _screenWidth * 0.09,
+                                ),
+                              InkWell(
+                                onTap: () {
+                                  if (widget.isRange) {
+                                    setRangeSelect();
+                                  } else {
+                                    widget.onSelected(selectedItems);
+                                    widget.getSelectedItems(selectedItems);
+                                  }
+                                  widget.closeCalendar();
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.fromLTRB(
+                                      _screenWidth * 0.03,
+                                      _screenWidth * 0.015,
+                                      _screenWidth * 0.03,
+                                      _screenWidth * 0.015),
+                                  decoration: BoxDecoration(
+                                    gradient: widget.okButtonColor,
+                                    borderRadius: BorderRadius.circular(
+                                        _screenWidth * 0.06),
+                                  ),
+                                  child: Text(
+                                    widget.okBtnLabel,
+                                    style: TextStyle(
+                                      fontSize: _screenWidth * 0.033,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              if (widget.isRange)
+                                AnimatedContainer(
+                                  duration: Duration(milliseconds: 700),
+                                  curve: Curves.easeOutQuad,
+                                  width: (datesRange.start != null)
+                                      ? (datesRange.end != null)
+                                          ? _screenWidth * 0.03
+                                          : _screenWidth * 0.06
+                                      : _screenWidth * 0.09,
+                                ),
+                              if (!widget.isRange)
+                                AnimatedContainer(
+                                  duration: Duration(milliseconds: 700),
+                                  curve: Curves.easeOutQuad,
+                                  width: (selectedItems!.length &gt; 0)
+                                      ? (selectedItems!.length &gt; 1)
+                                          ? _screenWidth * 0.03
+                                          : _screenWidth * 0.06
+                                      : _screenWidth * 0.09,
+                                ),
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">cool_datepicker</a></li>
+  <li><a href="../../views_calendar/views_calendar-library.html">calendar</a></li>
+  <li><a href="../../views_calendar/CalendarState-class.html">CalendarState</a></li>
+  <li class="self-crumb">build method</li>
+</ol>
+
+
+    <h5>CalendarState class</h5>
+    <ol>
+
+    <li class="section-title"><a href="../../views_calendar/CalendarState-class.html#constructors">Constructors</a></li>
+    <li><a href="../../views_calendar/CalendarState/CalendarState.html">CalendarState</a></li>
+
+
+    <li class="section-title">
+      <a href="../../views_calendar/CalendarState-class.html#instance-properties">Properties</a>
+    </li>
+    <li><a href="../../views_calendar/CalendarState/animationBGBlur.html">animationBGBlur</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationBGColor.html">animationBGColor</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationBorderExpand.html">animationBorderExpand</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationCalendarLeft.html">animationCalendarLeft</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationCalendarTop.html">animationCalendarTop</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationController.html">animationController</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationPadding.html">animationPadding</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationScale.html">animationScale</a></li>
+    <li><a href="../../views_calendar/CalendarState/betweenControllerList.html">betweenControllerList</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomBorderCtrl.html">bottomBorderCtrl</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomBorderExpandCtrl.html">bottomBorderExpandCtrl</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomListKey.html">bottomListKey</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomRangeBorderExpandWidth.html">bottomRangeBorderExpandWidth</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomRangeBorderHeight.html">bottomRangeBorderHeight</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomRangeBorderWidth.html">bottomRangeBorderWidth</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomRangeBtnCtrl.html">bottomRangeBtnCtrl</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomRightSizedWidth.html">bottomRightSizedWidth</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomSelectedItems.html">bottomSelectedItems</a></li>
+    <li><a href="../../views_calendar/CalendarState/calendarInfo.html">calendarInfo</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/context.html">context</a></li>
+    <li><a href="../../views_calendar/CalendarState/datesRange.html">datesRange</a></li>
+    <li><a href="../../views_calendar/CalendarState/endController.html">endController</a></li>
+    <li><a href="../../views_calendar/CalendarState/endDateStr.html">endDateStr</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+    <li><a href="../../views_calendar/CalendarState/isRight.html">isRight</a></li>
+    <li><a href="../../views_calendar/CalendarState/monthDropdown.html">monthDropdown</a></li>
+    <li><a href="../../views_calendar/CalendarState/monthValue.html">monthValue</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/mounted.html">mounted</a></li>
+    <li><a href="../../views_calendar/CalendarState/nullAnimation.html">nullAnimation</a></li>
+    <li><a href="../../views_calendar/CalendarState/paddingController.html">paddingController</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    <li><a href="../../views_calendar/CalendarState/selectedItems.html">selectedItems</a></li>
+    <li><a href="../../views_calendar/CalendarState/selectedItemsHistory.html">selectedItemsHistory</a></li>
+    <li><a href="../../views_calendar/CalendarState/selectedRangeItem.html">selectedRangeItem</a></li>
+    <li><a href="../../views_calendar/CalendarState/startController.html">startController</a></li>
+    <li><a href="../../views_calendar/CalendarState/startDateStr.html">startDateStr</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/widget.html">widget</a></li>
+    <li><a href="../../views_calendar/CalendarState/yearDropdown.html">yearDropdown</a></li>
+    <li><a href="../../views_calendar/CalendarState/yearValue.html">yearValue</a></li>
+
+    <li class="section-title"><a href="../../views_calendar/CalendarState-class.html#instance-methods">Methods</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/activate.html">activate</a></li>
+    <li><a href="../../views_calendar/CalendarState/arrowButton.html">arrowButton</a></li>
+    <li><a href="../../views_calendar/CalendarState/betweenArea.html">betweenArea</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomButton.html">bottomButton</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomRangeLabel.html">bottomRangeLabel</a></li>
+    <li><a href="../../views_calendar/CalendarState/build.html">build</a></li>
+    <li><a href="../../views_calendar/CalendarState/controlCalendar.html">controlCalendar</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/TickerProviderStateMixin/createTicker.html">createTicker</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/deactivate.html">deactivate</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/TickerProviderStateMixin/debugFillProperties.html">debugFillProperties</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/TickerProviderStateMixin/didChangeDependencies.html">didChangeDependencies</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/didUpdateWidget.html">didUpdateWidget</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/TickerProviderStateMixin/dispose.html">dispose</a></li>
+    <li><a href="../../views_calendar/CalendarState/dropdown.html">dropdown</a></li>
+    <li><a href="../../views_calendar/CalendarState/endArea.html">endArea</a></li>
+    <li><a href="../../views_calendar/CalendarState/findIndex.html">findIndex</a></li>
+    <li><a href="../../views_calendar/CalendarState/findValue.html">findValue</a></li>
+    <li><a href="../../views_calendar/CalendarState/getCenterPosition.html">getCenterPosition</a></li>
+    <li><a href="../../views_calendar/CalendarState/getFontWidth.html">getFontWidth</a></li>
+    <li><a href="../../views_calendar/CalendarState/getFullCalendarHeight.html">getFullCalendarHeight</a></li>
+    <li><a href="../../views_calendar/CalendarState/getFullCalendarWidth.html">getFullCalendarWidth</a></li>
+    <li><a href="../../views_calendar/CalendarState/initState.html">initState</a></li>
+    <li><a href="../../views_calendar/CalendarState/innerCircle.html">innerCircle</a></li>
+    <li><a href="../../views_calendar/CalendarState/limitCalendar.html">limitCalendar</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li><a href="../../views_calendar/CalendarState/outerCircle.html">outerCircle</a></li>
+    <li><a href="../../views_calendar/CalendarState/range.html">range</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/reassemble.html">reassemble</a></li>
+    <li><a href="../../views_calendar/CalendarState/removeBottomSelectedItems.html">removeBottomSelectedItems</a></li>
+    <li><a href="../../views_calendar/CalendarState/removeBottomSelectedItemsXBtn.html">removeBottomSelectedItemsXBtn</a></li>
+    <li><a href="../../views_calendar/CalendarState/resetBetweenControllerList.html">resetBetweenControllerList</a></li>
+    <li><a href="../../views_calendar/CalendarState/resetCalendar.html">resetCalendar</a></li>
+    <li><a href="../../views_calendar/CalendarState/setBottomEndFormat.html">setBottomEndFormat</a></li>
+    <li><a href="../../views_calendar/CalendarState/setBottomSelectedItems.html">setBottomSelectedItems</a></li>
+    <li><a href="../../views_calendar/CalendarState/setBottomStartFormat.html">setBottomStartFormat</a></li>
+    <li><a href="../../views_calendar/CalendarState/setCalcYearValue.html">setCalcYearValue</a></li>
+    <li><a href="../../views_calendar/CalendarState/setCalendar.html">setCalendar</a></li>
+    <li><a href="../../views_calendar/CalendarState/setDarkColor.html">setDarkColor</a></li>
+    <li><a href="../../views_calendar/CalendarState/setFormat.html">setFormat</a></li>
+    <li><a href="../../views_calendar/CalendarState/setOrderRangeAnimation.html">setOrderRangeAnimation</a></li>
+    <li><a href="../../views_calendar/CalendarState/setPreSelected.html">setPreSelected</a></li>
+    <li><a href="../../views_calendar/CalendarState/setRangeSelect.html">setRangeSelect</a></li>
+    <li><a href="../../views_calendar/CalendarState/setSizedBottomRightBtn.html">setSizedBottomRightBtn</a></li>
+    <li><a href="../../views_calendar/CalendarState/setStart.html">setStart</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/setState.html">setState</a></li>
+    <li><a href="../../views_calendar/CalendarState/single.html">single</a></li>
+    <li><a href="../../views_calendar/CalendarState/sizedWidget.html">sizedWidget</a></li>
+    <li><a href="../../views_calendar/CalendarState/startArea.html">startArea</a></li>
+    <li><a href="../../views_calendar/CalendarState/textColor.html">textColor</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/Diagnosticable/toDiagnosticsNode.html">toDiagnosticsNode</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html">toString</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/Diagnosticable/toStringShort.html">toStringShort</a></li>
+    <li><a href="../../views_calendar/CalendarState/wrapCalendar.html">wrapCalendar</a></li>
+
+    <li class="section-title inherited"><a href="../../views_calendar/CalendarState-class.html#operators">Operators</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    cool_datepicker
+      1.0.0
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

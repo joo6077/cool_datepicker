@@ -1,10 +1,11 @@
 # Cool datepicker
 
 <div align="center">
-<a href="https://pub.dev/packages/cool_dropdown/changelog" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/pub-v0.0.1-orange.svg"></a>
-<a href="https://pub.dev/packages/cool_dropdown" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/build-passing-6FCC76.svg"></a>
+<a href="https://pub.dev/packages/cool_datepicker/changelog" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/pub-v1.0.0-6771e4.svg"></a>
+<a href="https://pub.dev/packages/cool_dropdown/changelog" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/cool_dropdown-v1.4.0-6FCC76.svg"></a>
 <a href="https://opensource.org/licenses/MIT" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/license-MIT-blueviolet.svg"></a>
 <a href="https://flutter.dev/" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/platform-flutter-ff69b4.svg"></a>
+<a href="https://paypal.me/joo6077" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/paypal-donate-blue.svg"></a>
 </div>
 
 ## Features
@@ -18,9 +19,9 @@
 
 <div style="display: flex;">
 <img src="https://github.com/joo6077/cool_datepicker/blob/master/screenshots/sample_01.gif?raw=true" height="500">
-<img src="https://github.com/joo6077/cool_datepicker/blob/master/screenshots/sample_02.gif?raw=true" height="500"/>
 <img src="https://github.com/joo6077/cool_datepicker/blob/master/screenshots/sample_03.gif?raw=true" height="500"/>
 <img src="https://github.com/joo6077/cool_datepicker/blob/master/screenshots/sample_04.gif?raw=true" height="500"/>
+<img src="https://github.com/joo6077/cool_datepicker/blob/master/screenshots/sample_02.gif?raw=true" height="500"/>
 </div>
 
 <!-- ## Options map

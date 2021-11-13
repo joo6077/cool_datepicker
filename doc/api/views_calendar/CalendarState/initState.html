@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the initState method from the CalendarState class, for the Dart programming language.">
+  <title>initState method - CalendarState class - calendar library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">cool_datepicker</a></li>
+    <li><a href="../../views_calendar/views_calendar-library.html">calendar</a></li>
+    <li><a href="../../views_calendar/CalendarState-class.html">CalendarState</a></li>
+    <li class="self-crumb">initState method</li>
+  </ol>
+  <div class="self-name">initState</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-method">initState</span> method 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+<div>
+  <ol class="annotation-list">
+    <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
+  </ol>
+</div>
+
+<span class="returntype">void</span>
+<span class="name ">initState</span>(<wbr>)
+
+      <div class="features">override</div>
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Called when this object is inserted into the tree.</p>
+<p>The framework will call this method exactly once for each <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> object
+it creates.</p>
+<p>Override this method to perform initialization that depends on the
+location at which this object was inserted into the tree (i.e., <a href="https://api.flutter.dev/flutter/widgets/State/context.html">context</a>)
+or on the widget used to configure this object (i.e., <a href="https://api.flutter.dev/flutter/widgets/State/widget.html">widget</a>).</p>
+<p>If a <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a>'s <a href="../../views_calendar/CalendarState/build.html">build</a> method depends on an object that can itself
+change state, for example a <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html">ChangeNotifier</a> or <a href="https://api.flutter.dev/flutter/dart-async/Stream-class.html">Stream</a>, or some
+other object to which one can subscribe to receive notifications, then
+be sure to subscribe and unsubscribe properly in <a href="../../views_calendar/CalendarState/initState.html">initState</a>,
+<a href="https://api.flutter.dev/flutter/widgets/State/didUpdateWidget.html">didUpdateWidget</a>, and <a href="https://api.flutter.dev/flutter/widgets/TickerProviderStateMixin/dispose.html">dispose</a>:</p>
+<ul>
+<li>In <a href="../../views_calendar/CalendarState/initState.html">initState</a>, subscribe to the object.</li>
+<li>In <a href="https://api.flutter.dev/flutter/widgets/State/didUpdateWidget.html">didUpdateWidget</a> unsubscribe from the old object and subscribe
+to the new one if the updated widget configuration requires
+replacing the object.</li>
+<li>In <a href="https://api.flutter.dev/flutter/widgets/TickerProviderStateMixin/dispose.html">dispose</a>, unsubscribe from the object.</li>
+</ul>
+<p>You cannot use <a href="https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html">BuildContext.dependOnInheritedWidgetOfExactType</a> from this
+method. However, <a href="https://api.flutter.dev/flutter/widgets/TickerProviderStateMixin/didChangeDependencies.html">didChangeDependencies</a> will be called immediately
+following this method, and <a href="https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html">BuildContext.dependOnInheritedWidgetOfExactType</a> can
+be used there.</p>
+<p>Implementations of this method should start with a call to the inherited
+method, as in <code>super.initState()</code>.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">@override
+void initState() {
+  &#47;&#47; not english
+  String trimFormat = widget.format
+      .replaceAll(&#39;yyyy&#39;, &#39;&#39;)
+      .replaceAll(&#39;mm&#39;, &#39;&#39;)
+      .replaceAll(&#39;dd&#39;, &#39;&#39;)
+      .replaceAll(&#39; &#39;, &#39;&#39;);
+  List&lt;String&gt; stringList = trimFormat.split(&#39;&#39;);
+  final validCharacter = RegExp(r&#39;^[a-zA-Z0-9_\-=@,\.;]+$&#39;);
+  int matchedIndexCount = stringList
+      .where((element) =&gt; !validCharacter.hasMatch(element))
+      .toList()
+      .length;
+
+  Size formatTextWidth = widget.format.getTextWidth(
+      TextStyle(
+          fontSize: widget.datePickerIconPosition != null
+              ? widget.calendarSize * 0.04
+              : widget.iconSize * 0.04,
+          fontWeight: FontWeight.bold),
+      widget.parentBuildContext);
+  double eachScreenWidth = widget.datePickerIconPosition != null
+      ? widget.calendarSize
+      : widget.iconSize;
+  double getWaveWidth = &#39;~&#39;
+      .getTextWidth(
+          TextStyle(
+              fontSize: widget.datePickerIconPosition != null
+                  ? widget.calendarSize * 0.04
+                  : widget.iconSize * 0.04,
+              fontWeight: FontWeight.bold),
+          widget.parentBuildContext)
+      .width;
+  bottomRangeBorderWidth = formatTextWidth.width +
+      getWaveWidth +
+      (widget.datePickerIconPosition != null
+          ? ((widget.calendarSize * 0.03) -
+              (widget.calendarSize * 0.005 * matchedIndexCount))
+          : widget.iconSize * 0.03) +
+      (widget.datePickerIconPosition != null
+          ? widget.calendarSize * 0.015
+          : widget.iconSize * 0.015);
+  bottomRangeBorderExpandWidth = getWaveWidth +
+      formatTextWidth.width * 2 -
+      (widget.datePickerIconPosition != null
+          ? (widget.calendarSize * 0.01 * matchedIndexCount)
+          : (widget.iconSize * 0.01 * matchedIndexCount));
+  bottomRangeBorderHeight =
+      formatTextWidth.height + (0.015 * eachScreenWidth * 2);
+
+  &#47;&#47; 초기값 셋팅
+  selectedItems = widget.selectedItems ?? [];
+  datesRange.start = widget.selectedRangeItem?[&#39;start&#39;];
+  datesRange.end = widget.selectedRangeItem?[&#39;end&#39;];
+  selectedItemsHistory =
+      widget.selectedItems != null ? [...widget.selectedItems!] : [];
+
+  yearValue = findValue(list: widget.years, value: DateTime.now().year);
+  monthValue =
+      findValue(list: widget.monthLabelList, value: DateTime.now().month);
+
+  setCalendar();
+  Offset getCenterOffset = getCenterPosition(
+    widget.fullSize.width,
+    widget.fullSize.height,
+    widget.calendarSize,
+    getFullCalendarHeight(widget.calendarSize),
+  );
+
+  WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    for (var selectedItem in selectedItems!) {
+      setBottomSelectedItems(selectedItem);
+    }
+  });
+
+  &#47;&#47; controller
+  animationController =
+      AnimationController(vsync: this, duration: Duration(milliseconds: 700));
+  paddingController =
+      AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+  startController =
+      AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+  resetBetweenControllerList();
+  endController =
+      AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+  bottomRangeBtnCtrl =
+      AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+  bottomBorderCtrl =
+      AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+  bottomBorderExpandCtrl =
+      AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+
+  if (widget.datePickerIconPosition != null) {
+    &#47;&#47; curve setting
+    Animation&lt;double&gt; positionCurve = CurvedAnimation(
+        parent: animationController, curve: Curves.easeInOutSine);
+    Animation&lt;double&gt; scaleCurve = CurvedAnimation(
+        parent: animationController, curve: Curves.easeInQuint);
+    Animation&lt;double&gt; paddingCurve = CurvedAnimation(
+        parent: paddingController, curve: Curves.easeInOutQuad);
+    &#47;&#47; animation setting
+    animationCalendarTop = Tween&lt;double&gt;(
+            begin: widget.datePickerIconPosition!.dy, end: getCenterOffset.dy)
+        .animate(positionCurve);
+    animationCalendarLeft = Tween&lt;double&gt;(
+            begin: widget.datePickerIconPosition!.dx, end: getCenterOffset.dx)
+        .animate(positionCurve);
+    animationScale =
+        Tween&lt;double&gt;(begin: widget.iconSize &#47; widget.calendarSize, end: 1.0)
+            .animate(scaleCurve);
+    animationPadding = Tween&lt;double&gt;(
+            begin: widget.calendarSize * 0.025,
+            end: widget.calendarSize * 0.01)
+        .animate(paddingCurve);
+    animationBGBlur =
+        Tween&lt;double&gt;(begin: 0, end: 1).animate(animationController);
+    animationBGColor = ColorTween(
+            begin: Colors.transparent, end: Colors.white.withOpacity(0.7))
+        .animate(animationController);
+    animationController.forward();
+
+    &#47;&#47; animation init
+    setPreSelected();
+  }
+  if (datesRange.start != null) {
+    setBottomStartFormat(
+        yyyy: datesRange.start!.year,
+        mm: datesRange.start!.month,
+        dd: datesRange.start!.day);
+    bottomBorderCtrl.forward(from: 1);
+  }
+  if (datesRange.end != null) {
+    setBottomEndFormat(
+        yyyy: datesRange.end!.year,
+        mm: datesRange.end!.month,
+        dd: datesRange.end!.day);
+    bottomBorderExpandCtrl.forward(from: 1);
+  }
+
+  animationBorderExpand = Tween&lt;double&gt;(
+          begin: bottomRangeBorderWidth, end: bottomRangeBorderExpandWidth)
+      .animate(CurvedAnimation(
+          parent: bottomBorderExpandCtrl, curve: Curves.easeOutQuint));
+  nullAnimation =
+      Tween&lt;double&gt;(begin: 0, end: 0).animate(animationController);
+
+  super.initState();
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">cool_datepicker</a></li>
+  <li><a href="../../views_calendar/views_calendar-library.html">calendar</a></li>
+  <li><a href="../../views_calendar/CalendarState-class.html">CalendarState</a></li>
+  <li class="self-crumb">initState method</li>
+</ol>
+
+
+    <h5>CalendarState class</h5>
+    <ol>
+
+    <li class="section-title"><a href="../../views_calendar/CalendarState-class.html#constructors">Constructors</a></li>
+    <li><a href="../../views_calendar/CalendarState/CalendarState.html">CalendarState</a></li>
+
+
+    <li class="section-title">
+      <a href="../../views_calendar/CalendarState-class.html#instance-properties">Properties</a>
+    </li>
+    <li><a href="../../views_calendar/CalendarState/animationBGBlur.html">animationBGBlur</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationBGColor.html">animationBGColor</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationBorderExpand.html">animationBorderExpand</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationCalendarLeft.html">animationCalendarLeft</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationCalendarTop.html">animationCalendarTop</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationController.html">animationController</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationPadding.html">animationPadding</a></li>
+    <li><a href="../../views_calendar/CalendarState/animationScale.html">animationScale</a></li>
+    <li><a href="../../views_calendar/CalendarState/betweenControllerList.html">betweenControllerList</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomBorderCtrl.html">bottomBorderCtrl</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomBorderExpandCtrl.html">bottomBorderExpandCtrl</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomListKey.html">bottomListKey</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomRangeBorderExpandWidth.html">bottomRangeBorderExpandWidth</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomRangeBorderHeight.html">bottomRangeBorderHeight</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomRangeBorderWidth.html">bottomRangeBorderWidth</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomRangeBtnCtrl.html">bottomRangeBtnCtrl</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomRightSizedWidth.html">bottomRightSizedWidth</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomSelectedItems.html">bottomSelectedItems</a></li>
+    <li><a href="../../views_calendar/CalendarState/calendarInfo.html">calendarInfo</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/context.html">context</a></li>
+    <li><a href="../../views_calendar/CalendarState/datesRange.html">datesRange</a></li>
+    <li><a href="../../views_calendar/CalendarState/endController.html">endController</a></li>
+    <li><a href="../../views_calendar/CalendarState/endDateStr.html">endDateStr</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+    <li><a href="../../views_calendar/CalendarState/isRight.html">isRight</a></li>
+    <li><a href="../../views_calendar/CalendarState/monthDropdown.html">monthDropdown</a></li>
+    <li><a href="../../views_calendar/CalendarState/monthValue.html">monthValue</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/mounted.html">mounted</a></li>
+    <li><a href="../../views_calendar/CalendarState/nullAnimation.html">nullAnimation</a></li>
+    <li><a href="../../views_calendar/CalendarState/paddingController.html">paddingController</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    <li><a href="../../views_calendar/CalendarState/selectedItems.html">selectedItems</a></li>
+    <li><a href="../../views_calendar/CalendarState/selectedItemsHistory.html">selectedItemsHistory</a></li>
+    <li><a href="../../views_calendar/CalendarState/selectedRangeItem.html">selectedRangeItem</a></li>
+    <li><a href="../../views_calendar/CalendarState/startController.html">startController</a></li>
+    <li><a href="../../views_calendar/CalendarState/startDateStr.html">startDateStr</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/widget.html">widget</a></li>
+    <li><a href="../../views_calendar/CalendarState/yearDropdown.html">yearDropdown</a></li>
+    <li><a href="../../views_calendar/CalendarState/yearValue.html">yearValue</a></li>
+
+    <li class="section-title"><a href="../../views_calendar/CalendarState-class.html#instance-methods">Methods</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/activate.html">activate</a></li>
+    <li><a href="../../views_calendar/CalendarState/arrowButton.html">arrowButton</a></li>
+    <li><a href="../../views_calendar/CalendarState/betweenArea.html">betweenArea</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomButton.html">bottomButton</a></li>
+    <li><a href="../../views_calendar/CalendarState/bottomRangeLabel.html">bottomRangeLabel</a></li>
+    <li><a href="../../views_calendar/CalendarState/build.html">build</a></li>
+    <li><a href="../../views_calendar/CalendarState/controlCalendar.html">controlCalendar</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/TickerProviderStateMixin/createTicker.html">createTicker</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/deactivate.html">deactivate</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/TickerProviderStateMixin/debugFillProperties.html">debugFillProperties</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/TickerProviderStateMixin/didChangeDependencies.html">didChangeDependencies</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/didUpdateWidget.html">didUpdateWidget</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/TickerProviderStateMixin/dispose.html">dispose</a></li>
+    <li><a href="../../views_calendar/CalendarState/dropdown.html">dropdown</a></li>
+    <li><a href="../../views_calendar/CalendarState/endArea.html">endArea</a></li>
+    <li><a href="../../views_calendar/CalendarState/findIndex.html">findIndex</a></li>
+    <li><a href="../../views_calendar/CalendarState/findValue.html">findValue</a></li>
+    <li><a href="../../views_calendar/CalendarState/getCenterPosition.html">getCenterPosition</a></li>
+    <li><a href="../../views_calendar/CalendarState/getFontWidth.html">getFontWidth</a></li>
+    <li><a href="../../views_calendar/CalendarState/getFullCalendarHeight.html">getFullCalendarHeight</a></li>
+    <li><a href="../../views_calendar/CalendarState/getFullCalendarWidth.html">getFullCalendarWidth</a></li>
+    <li><a href="../../views_calendar/CalendarState/initState.html">initState</a></li>
+    <li><a href="../../views_calendar/CalendarState/innerCircle.html">innerCircle</a></li>
+    <li><a href="../../views_calendar/CalendarState/limitCalendar.html">limitCalendar</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li><a href="../../views_calendar/CalendarState/outerCircle.html">outerCircle</a></li>
+    <li><a href="../../views_calendar/CalendarState/range.html">range</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/reassemble.html">reassemble</a></li>
+    <li><a href="../../views_calendar/CalendarState/removeBottomSelectedItems.html">removeBottomSelectedItems</a></li>
+    <li><a href="../../views_calendar/CalendarState/removeBottomSelectedItemsXBtn.html">removeBottomSelectedItemsXBtn</a></li>
+    <li><a href="../../views_calendar/CalendarState/resetBetweenControllerList.html">resetBetweenControllerList</a></li>
+    <li><a href="../../views_calendar/CalendarState/resetCalendar.html">resetCalendar</a></li>
+    <li><a href="../../views_calendar/CalendarState/setBottomEndFormat.html">setBottomEndFormat</a></li>
+    <li><a href="../../views_calendar/CalendarState/setBottomSelectedItems.html">setBottomSelectedItems</a></li>
+    <li><a href="../../views_calendar/CalendarState/setBottomStartFormat.html">setBottomStartFormat</a></li>
+    <li><a href="../../views_calendar/CalendarState/setCalcYearValue.html">setCalcYearValue</a></li>
+    <li><a href="../../views_calendar/CalendarState/setCalendar.html">setCalendar</a></li>
+    <li><a href="../../views_calendar/CalendarState/setDarkColor.html">setDarkColor</a></li>
+    <li><a href="../../views_calendar/CalendarState/setFormat.html">setFormat</a></li>
+    <li><a href="../../views_calendar/CalendarState/setOrderRangeAnimation.html">setOrderRangeAnimation</a></li>
+    <li><a href="../../views_calendar/CalendarState/setPreSelected.html">setPreSelected</a></li>
+    <li><a href="../../views_calendar/CalendarState/setRangeSelect.html">setRangeSelect</a></li>
+    <li><a href="../../views_calendar/CalendarState/setSizedBottomRightBtn.html">setSizedBottomRightBtn</a></li>
+    <li><a href="../../views_calendar/CalendarState/setStart.html">setStart</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/State/setState.html">setState</a></li>
+    <li><a href="../../views_calendar/CalendarState/single.html">single</a></li>
+    <li><a href="../../views_calendar/CalendarState/sizedWidget.html">sizedWidget</a></li>
+    <li><a href="../../views_calendar/CalendarState/startArea.html">startArea</a></li>
+    <li><a href="../../views_calendar/CalendarState/textColor.html">textColor</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/Diagnosticable/toDiagnosticsNode.html">toDiagnosticsNode</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html">toString</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/Diagnosticable/toStringShort.html">toStringShort</a></li>
+    <li><a href="../../views_calendar/CalendarState/wrapCalendar.html">wrapCalendar</a></li>
+
+    <li class="section-title inherited"><a href="../../views_calendar/CalendarState-class.html#operators">Operators</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    cool_datepicker
+      1.0.0
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
