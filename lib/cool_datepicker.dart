@@ -23,6 +23,7 @@ class CoolDatepicker extends StatefulWidget {
   late List weekLabelMapList;
   late List monthLabelMapList;
   bool isYearMonthDropdownReverse;
+  int ? firstWeekDay;
 
   // color
   Color headerColor;
@@ -105,6 +106,7 @@ class CoolDatepicker extends StatefulWidget {
     this.cancelBtnLabel = 'CANCEL',
     this.okBtnLabel = 'OK',
     this.isResultLabel = true,
+    this.firstWeekDay = DateTime.sunday,
   }) {
     // disabledRangeList 체크
     if (disabledRangeList != null) {
@@ -141,6 +143,11 @@ class CoolDatepicker extends StatefulWidget {
       {'label': weekLabelList?[5] ?? 'F', 'color': const Color(0XFF333333)},
       {'label': weekLabelList?[6] ?? 'S', 'color': const Color(0XFF22A2BF)}
     ];
+
+    List sourceWeekLabels = List.from(weekLabelMapList);
+    for(int i=0; i<sourceWeekLabels.length; i++){
+      weekLabelMapList[i] = sourceWeekLabels[(i+firstWeekDay!)%7];
+    }
 
     monthLabelMapList = [
       {'label': monthLabelList?[0] ?? '01', 'value': 1},
@@ -305,6 +312,7 @@ class _CoolDatepickerState extends State<CoolDatepicker>
             onSelected: widget.onSelected,
             weekLabelList: widget.weekLabelMapList,
             monthLabelList: widget.monthLabelMapList,
+            firstWeekDay: widget.firstWeekDay!,
             getSelectedItems: (selectedItems) {
               if (selectedItems is Map) {
                 setState(() {
@@ -484,6 +492,7 @@ class _CoolDatepickerState extends State<CoolDatepicker>
                             width: widget.iconSize,
                             child: Calendar(
                               key: datePickerIconKey,
+                              firstWeekDay: widget.firstWeekDay!,
                               iconSize: widget.iconSize,
                               calendarSize: widget.calendarSize,
                               isYearMonthDropdownReverse:

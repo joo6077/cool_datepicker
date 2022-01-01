@@ -10,15 +10,12 @@ class CalendarInfo {
   List<DateInfo> dates = [];
   late dynamic thisVsync;
 
-  CalendarInfo({required this.year, required this.month, this.thisVsync}) {
+  CalendarInfo({required this.year, required this.month, this.thisVsync, required int firstWeekDay}) {
     int lastDay = DateTime(year, month + 1, 0).day;
-    int firstWeekday = DateTime(year, month, 1).weekday;
+    int monthFirstWeekDay = DateTime(year, month, 1).weekday;
 
-    // 비어있는 날짜
-    if (firstWeekday != 7) {
-      for (var i = 0; i < firstWeekday; i++) {
-        dates.add(DateInfo(isSelected: SelectType.empty));
-      }
+    for (int i = 0; i < (monthFirstWeekDay-firstWeekDay); i++) {
+      dates.add(DateInfo(isSelected: SelectType.empty));
     }
 
     for (var i = 0; i < lastDay; i++) {
