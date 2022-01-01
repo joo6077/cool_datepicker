@@ -133,6 +133,12 @@ class CoolDatepicker extends StatefulWidget {
             format.contains('dd')),
         'you must include yyyy, dd, mm');
 
+    assert(
+    (firstWeekDay! >=1) && (firstWeekDay! <= 7),
+    'firstWeekDay must be > 0 and <= 7. The code number is: '
+        ' monday = 1, tuesday = 2 wednesday = 3, thursday = 4, friday = 5, saturday = 6, sunday = 7'
+    );
+
     // weekLabelList setting
     weekLabelMapList = [
       {'label': weekLabelList?[0] ?? 'S', 'color': const Color(0XFFE70000)},
