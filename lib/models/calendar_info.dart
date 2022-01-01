@@ -14,9 +14,11 @@ class CalendarInfo {
     int lastDay = DateTime(year, month + 1, 0).day;
     int monthFirstWeekDay = DateTime(year, month, 1).weekday;
 
-    for (int i = 0; i < (monthFirstWeekDay-firstWeekDay); i++) {
+    for (int i = 0; i < (monthFirstWeekDay - firstWeekDay) %7; i++) {
       dates.add(DateInfo(isSelected: SelectType.empty));
     }
+
+
 
     for (var i = 0; i < lastDay; i++) {
       AnimationController singleSelectedAniCtrl = AnimationController(
