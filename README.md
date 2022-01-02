@@ -1,11 +1,11 @@
 # Cool datepicker
 
 
-[![pub package version](https://img.shields.io/pub/v/cool_datepicker)](https://pub.dev/packages/cool_datepicker)
+
 
 <div align="center">
  
-<a href="https://pub.dev/packages/cool_datepicker" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/pub-v1.0.3-6771e4.svg"></a>
+[![pub package version](https://img.shields.io/pub/v/cool_datepicker)](https://pub.dev/packages/cool_datepicker)
 <a href="https://pub.dev/packages/cool_dropdown" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/cool_dropdown-v1.4.0-6FCC76.svg"></a>
 <a href="https://opensource.org/licenses/MIT" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/license-MIT-blueviolet.svg"></a>
 <a href="https://flutter.dev/" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/platform-flutter-ff69b4.svg"></a>
