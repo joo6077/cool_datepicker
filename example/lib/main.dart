@@ -42,6 +42,7 @@ class _MyAppState extends State<MyApp> {
                 maxYear: 2100,
                 minYear: 1900,
                 calendarSize: 350,
+                firstWeekDay: 1,
                 isRange: true,
                 limitCount: 3,
                 format: 'mm/dd/yyyy',
