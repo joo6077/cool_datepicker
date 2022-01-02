@@ -30,6 +30,7 @@ class Calendar extends StatefulWidget {
   List monthLabelList;
   late double maxMonthDropdownWidth;
   bool isYearMonthDropdownReverse;
+  int firstWeekDay;
 
   Color headerColor;
   Color arrowIconAreaColor;
@@ -77,6 +78,7 @@ class Calendar extends StatefulWidget {
     required this.monthLabelList,
     this.key,
     required this.isYearMonthDropdownReverse,
+    required this.firstWeekDay,
     required this.headerColor,
     required this.arrowIconAreaColor,
     required this.selectedCircleColor,
@@ -340,6 +342,7 @@ class CalendarState extends State<Calendar> with TickerProviderStateMixin {
   void setCalendar() {
     if (widget.isRange) {
       calendarInfo = CalendarInfo(
+          firstWeekDay: widget.firstWeekDay,
           year: yearValue['value'], month: monthValue['value'], thisVsync: this)
         ..setSelectedBtwDates(
           datesRange: datesRange,
@@ -348,6 +351,7 @@ class CalendarState extends State<Calendar> with TickerProviderStateMixin {
         );
     } else {
       calendarInfo = CalendarInfo(
+        firstWeekDay: widget.firstWeekDay,
           year: yearValue['value'], month: monthValue['value'], thisVsync: this)
         ..setSelectedDates(
           selectedDates: selectedItems!,
