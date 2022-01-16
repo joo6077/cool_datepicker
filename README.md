@@ -22,10 +22,10 @@
 ## Samples
 
 <div style="display: flex;">
-<img src="https://github.com/joo6077/cool_datepicker/blob/master/screenshots/sample_01.gif?raw=true" height="500">
-<img src="https://github.com/joo6077/cool_datepicker/blob/master/screenshots/sample_03.gif?raw=true" height="500"/>
-<img src="https://github.com/joo6077/cool_datepicker/blob/master/screenshots/sample_04.gif?raw=true" height="500"/>
-<img src="https://github.com/joo6077/cool_datepicker/blob/master/screenshots/sample_02.gif?raw=true" height="500"/>
+<img src="https://github.com/joo6077/flutter_date_picker/blob/master/screenshots/sample_01.gif?raw=true" height="500">
+<img src="https://github.com/joo6077/flutter_date_picker/blob/master/screenshots/sample_03.gif?raw=true" height="500"/>
+<img src="https://github.com/joo6077/flutter_date_picker/blob/master/screenshots/sample_04.gif?raw=true" height="500"/>
+<img src="https://github.com/joo6077/flutter_date_picker/blob/master/screenshots/sample_02.gif?raw=true" height="500"/>
 </div>
 
 <!-- ## Options map
