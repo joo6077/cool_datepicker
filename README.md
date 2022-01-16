@@ -1,8 +1,12 @@
 # Cool datepicker
 
+
+
+
 <div align="center">
-<a href="https://pub.dev/packages/cool_datepicker" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/pub-v1.0.3-6771e4.svg"></a>
-<a href="https://pub.dev/packages/cool_dropdown" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/cool_dropdown-v1.4.0-6FCC76.svg"></a>
+ 
+[![pub package version](https://img.shields.io/pub/v/cool_datepicker)](https://pub.dev/packages/cool_datepicker)
+<a href="https://pub.dev/packages/cool_dropdown" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/pub-cool_dropdown-6FCC76.svg"></a>
 <a href="https://opensource.org/licenses/MIT" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/license-MIT-blueviolet.svg"></a>
 <a href="https://flutter.dev/" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/platform-flutter-ff69b4.svg"></a>
 <a href="https://paypal.me/joo6077" rel="noopener" target="_blank"><img src="https://img.shields.io/badge/paypal-donate-blue.svg"></a>
@@ -134,26 +138,27 @@ placeholderTS = TextStyle(color: Colors.grey.withOpacity(0.7), fontSize: 20);
 
 ## Datepicker options
 
-| option                | Type              |                 Default | Description                                           |
-| --------------------- | ----------------- | ----------------------: | ----------------------------------------------------- |
-| calendarSize         | double            |  400|  Datepicker size                                   |
-| minYear         | double            |  DateTime.now().year - 100|  Datepicker minimum year                                   |
-| maxYear         | double            |  DateTime.now().year + 100|  Datepicker maximum year                                   |
-| format         | string            |  'yyyy-mm-dd'| Format to show as result and bottom selected dates                       |
-| limitCount         | int            |  1| Set how many dates can be picked                       |
-| weekLabelList         | List<String>            |  below code| Set week words on the datepicker                       |
-| monthLabelList         | List<String>            |  below code| Set month dropdown label on the datepicker datepicker        |
-| isYearMonthDropdownReverse         | bool            |  false| Reverse order of dropdowns on the datepicker        |
-| headerColor         | Color            |  Color(0XFF6771e4)| Reverse order of dropdowns on the datepicker        |
-| arrowIconAreaColor         | Color            |  Color(0XFF4752e0)| Reverse order of dropdowns on the datepicker        |
-| selectedCircleColor         | Color            |  Color(0XFF6771e4)| Reverse order of dropdowns on the datepicker        |
-| selectedBetweenAreaColor         | Color            |  Color(0XFFe2e4fa)| Reverse order of dropdowns on the datepicker        |
-| cancelFontColor         | Color            |  Color(0XFF4a54c5)| Reverse order of dropdowns on the datepicker        |
-| okButtonColor         | LinearGradient            |  below code| Reverse order of dropdowns on the datepicker        |
-| bottomSelectedBorderColor         | Color            |  Color(0XFF6771e4)| Reverse order of dropdowns on the datepicker        |
-| isDark         | bool            |  false| dark mode        |
-| cancelBtnLabel         | String            |  'CANCEL'| Cancel button label        |
-| okBtnLabel         | String            |  'OK'| Ok button label        |
+| option                | Type              |                   Default | Description                                                                                                                                                                                               |
+| --------------------- | ----------------- |--------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| calendarSize         | double            |                       400 | Datepicker size                                                                                                                                                                                           |
+| minYear         | double            | DateTime.now().year - 100 | Datepicker minimum year                                                                                                                                                                                   |
+| maxYear         | double            | DateTime.now().year + 100 | Datepicker maximum year                                                                                                                                                                                   |
+| format         | string            |              'yyyy-mm-dd' | Format to show as result and bottom selected dates                                                                                                                                                        |
+| limitCount         | int            |                         1 | Set how many dates can be picked                                                                                                                                                                          |
+| weekLabelList         | List<String>            |                below code | Set week words on the datepicker                                                                                                                                                                          |
+| monthLabelList         | List<String>            |                below code | Set month dropdown label on the datepicker datepicker                                                                                                                                                     |
+ | firstWeekDay | int |                7 (Sunday) | Set de first weekday that will be shown. Possible values are:monday = 1, tuesday = 2 wednesday = 3, thursday = 4, friday = 5, saturday = 6, sunday = 7 (Can also use DateTime.monday, DateTime.sunday...) |
+| isYearMonthDropdownReverse         | bool            |                     false | Reverse order of dropdowns on the datepicker                                                                                                                                                              |
+| headerColor         | Color            |         Color(0XFF6771e4) | Reverse order of dropdowns on the datepicker                                                                                                                                                              |
+| arrowIconAreaColor         | Color            |         Color(0XFF4752e0) | Reverse order of dropdowns on the datepicker                                                                                                                                                              |
+| selectedCircleColor         | Color            |         Color(0XFF6771e4) | Reverse order of dropdowns on the datepicker                                                                                                                                                              |
+| selectedBetweenAreaColor         | Color            |         Color(0XFFe2e4fa) | Reverse order of dropdowns on the datepicker                                                                                                                                                              |
+| cancelFontColor         | Color            |         Color(0XFF4a54c5) | Reverse order of dropdowns on the datepicker                                                                                                                                                              |
+| okButtonColor         | LinearGradient            |                below code | Reverse order of dropdowns on the datepicker                                                                                                                                                              |
+| bottomSelectedBorderColor         | Color            |         Color(0XFF6771e4) | Reverse order of dropdowns on the datepicker                                                                                                                                                              |
+| isDark         | bool            |                     false | dark mode                                                                                                                                                                                                 |
+| cancelBtnLabel         | String            |                  'CANCEL' | Cancel button label                                                                                                                                                                                       |
+| okBtnLabel         | String            |                      'OK' | Ok button label                                                                                                                                                                                           |
 
 
 ```dart
