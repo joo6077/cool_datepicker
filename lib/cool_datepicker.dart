@@ -13,7 +13,7 @@ class CoolDatepicker extends StatefulWidget {
   late List<Map> years = [];
   Function onSelected;
   List<DateTime>? _selectedItems;
-  Map<String, DateTime?>? _selectedRangeItem;
+  Map<String, DateTime?>? selectedRangeItem;
   bool isRange;
   String format;
   int limitCount;
@@ -75,6 +75,7 @@ class CoolDatepicker extends StatefulWidget {
     this.maxYear,
     required this.onSelected,
     this.isRange = false,
+    this.selectedRangeItem,
     resultIcon,
     placeholderTS,
     this.isResultIconLabelReverse = false,
@@ -322,7 +323,7 @@ class _CoolDatepickerState extends State<CoolDatepicker>
             getSelectedItems: (selectedItems) {
               if (selectedItems is Map) {
                 setState(() {
-                  widget._selectedRangeItem =
+                  widget.selectedRangeItem =
                       selectedItems.cast<String, DateTime?>();
                   rangeLabel = selectedRangeString();
                 });
@@ -335,7 +336,7 @@ class _CoolDatepickerState extends State<CoolDatepicker>
               }
             },
             selectedItems: widget._selectedItems,
-            selectedRangeItem: widget._selectedRangeItem,
+            selectedRangeItem: widget.selectedRangeItem,
             isRange: widget.isRange,
             datePickerIconPosition: datePickerIconPosition,
             calendarSize: widget.calendarSize,
@@ -371,7 +372,7 @@ class _CoolDatepickerState extends State<CoolDatepicker>
     setState(() {
       if (widget.defaultValue != null) {
         if (widget.isRange) {
-          widget._selectedRangeItem = widget.defaultValue;
+          widget.selectedRangeItem = widget.defaultValue;
           rangeLabel = selectedRangeString();
         } else {
           widget._selectedItems = widget.defaultValue;
@@ -400,12 +401,12 @@ class _CoolDatepickerState extends State<CoolDatepicker>
 
   String selectedRangeString() {
     String result = '';
-    if (widget._selectedRangeItem!['start'] != null) {
+    if (widget.selectedRangeItem!['start'] != null) {
       result +=
-          dateTimeToFormat(target: widget._selectedRangeItem!['start']) + ' ~ ';
+          dateTimeToFormat(target: widget.selectedRangeItem!['start']) + ' ~ ';
     }
-    if (widget._selectedRangeItem!['end'] != null) {
-      result += dateTimeToFormat(target: widget._selectedRangeItem!['end']);
+    if (widget.selectedRangeItem!['end'] != null) {
+      result += dateTimeToFormat(target: widget.selectedRangeItem!['end']);
     }
     return result;
   }
@@ -456,7 +457,7 @@ class _CoolDatepickerState extends State<CoolDatepicker>
                     if (widget.isResultLabel)
                       if ((widget._selectedItems == null ||
                               widget._selectedItems!.isEmpty) &&
-                          widget._selectedRangeItem == null)
+                          widget.selectedRangeItem == null)
                         Expanded(
                             child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -466,7 +467,7 @@ class _CoolDatepickerState extends State<CoolDatepicker>
                           ),
                         )),
                     if (widget.isResultLabel)
-                      if (widget.isRange && widget._selectedRangeItem != null)
+                      if (widget.isRange && widget.selectedRangeItem != null)
                         Expanded(
                             child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -513,7 +514,7 @@ class _CoolDatepickerState extends State<CoolDatepicker>
                               fullSize: MediaQuery.of(context).size,
                               closeCalendar: (_) {},
                               selectedItems: widget._selectedItems,
-                              selectedRangeItem: widget._selectedRangeItem,
+                              selectedRangeItem: widget.selectedRangeItem,
                               parentBuildContext: context,
                               limitCount: widget.limitCount,
                               format: widget.format,
