@@ -1,3 +1,4 @@
+import 'package:cool_datepicker/models/day_of_week.dart';
 import 'package:flutter/material.dart';
 import 'package:cool_datepicker/cool_datepicker.dart';
 import 'package:cool_datepicker/new_cool_datepicker.dart';
@@ -112,7 +113,10 @@ class _MyAppState extends State<MyApp> {
               //   ),
               // ),
               Center(
-                child: NewCoolDatepicker(),
+                child: NewCoolDatepicker(
+                  weekSettings: WeekSettings(firstDayOfWeek: WeekDay.monday),
+                  monthSettings: MonthSettings.english,
+                ),
               ),
             ],
           )),

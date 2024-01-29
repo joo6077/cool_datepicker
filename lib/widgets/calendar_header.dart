@@ -1,7 +1,17 @@
+import 'package:cool_datepicker/models/day_of_week.dart';
 import 'package:flutter/material.dart';
 
 class CalendarHeader extends StatelessWidget {
-  const CalendarHeader({Key? key}) : super(key: key);
+  final Month month;
+  final int year;
+  final VoidCallback onMonthTap, onYearTap;
+  const CalendarHeader({
+    Key? key,
+    required this.month,
+    required this.year,
+    required this.onMonthTap,
+    required this.onYearTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +35,30 @@ class CalendarHeader extends StatelessWidget {
                   ),
                 ),
               ),
-              Text(
-                'November 2021',
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
+              GestureDetector(
+                onTap: onMonthTap,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: Text(
+                    month.text,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 4,
+              ),
+              GestureDetector(
+                onTap: onYearTap,
+                child: Text(
+                  year.toString(),
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               Opacity(
