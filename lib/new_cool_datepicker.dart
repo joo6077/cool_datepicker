@@ -1,6 +1,8 @@
-import 'package:cool_datepicker/models/date_calculator.dart';
+import 'package:cool_datepicker/controllers/datepicker_controller.dart';
 import 'package:cool_datepicker/widgets/animated_clip_rect.dart';
+import 'package:cool_datepicker/widgets/calendar_body.dart';
 import 'package:cool_datepicker/widgets/month_view.dart';
+import 'package:cool_datepicker/widgets/year_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cool_datepicker/models/day_of_week.dart';
@@ -22,12 +24,15 @@ class NewCoolDatepicker extends StatefulWidget {
 class _NewCoolDatepickerState extends State<NewCoolDatepicker> {
   late final PageController _pageController;
 
+  final _datepickerController = DatepickerController();
+
   bool _isMonthOpened = false;
+  bool _isYearOpened = false;
 
   @override
   void initState() {
     DateTime today = DateTime.now();
-    int initialPage = (today.year * 12 + today.month) - (2000 * 12);
+    int initialPage = _setPage(today);
     _pageController = PageController(initialPage: initialPage);
     super.initState();
   }
@@ -60,41 +65,23 @@ class _NewCoolDatepickerState extends State<NewCoolDatepicker> {
           PageView.builder(
             controller: _pageController,
             itemBuilder: (_, index) {
-              final year = (index ~/ 12) + 2000;
-              final month = index % 12;
-              // -1 because month is 1-12, but list is 0-11 if it's negative, it will be 11
-              var monthIndex = month - 1;
-              if (monthIndex < 0) {
-                monthIndex = 11;
-              }
+              final date = _getDate(index);
+              final month = date.month;
+              final year = date.year;
               return Column(
                 children: [
                   CalendarHeader(
-                    onMonthTap: () {
-                      setState(() {
-                        _isMonthOpened = !_isMonthOpened;
-                      });
-                    },
-                    onYearTap: () {},
-                    month: widget.monthSettings.list[monthIndex],
+                    onMonthTap: _onMonthTap,
+                    onYearTap: _onYearTap,
+                    month: widget.monthSettings.list[month - 1],
                     year: year,
                   ),
                   Expanded(
-                    child: GridView.count(
-                      crossAxisCount: 7,
-                      children: DateCalculator.generateMonthDays(
-                        year,
-                        month,
-                        widget.weekSettings.firstDayOfWeek,
-                      ).map((day) {
-                        return day > 0
-                            ? Center(
-                                child: Text(day.toString()),
-                              )
-                            : const SizedBox();
-                      }).toList(),
-                    ),
-                  ),
+                      child: CalendarBody(
+                    datepickerController: _datepickerController,
+                    weekSettings: widget.weekSettings,
+                    selectedDate: date,
+                  )),
                 ],
               );
             },
@@ -104,12 +91,7 @@ class _NewCoolDatepickerState extends State<NewCoolDatepicker> {
             height: 50,
             left: 0,
             child: IconButton(
-              onPressed: () {
-                _pageController.previousPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              },
+              onPressed: _onPreviousMonth,
               icon: const Icon(
                 Icons.arrow_back_ios,
                 color: Colors.white,
@@ -121,12 +103,7 @@ class _NewCoolDatepickerState extends State<NewCoolDatepicker> {
             height: 50,
             right: 0,
             child: IconButton(
-              onPressed: () {
-                _pageController.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              },
+              onPressed: _onNextMonth,
               icon: const Icon(
                 Icons.arrow_forward_ios,
                 color: Colors.white,
@@ -140,9 +117,6 @@ class _NewCoolDatepickerState extends State<NewCoolDatepicker> {
             right: 0,
             child: SizedBox(
               height: 50,
-              // decoration: const BoxDecoration(
-              //   color: Color(0XFF6771e4),
-              // ),
               child: Row(
                   children: widget.weekSettings.dayOfWeekList.map((day) {
                 return Expanded(
@@ -156,24 +130,92 @@ class _NewCoolDatepickerState extends State<NewCoolDatepicker> {
               }).toList()),
             ),
           ),
-          AnimatedClipRect(
-            open: _isMonthOpened,
-            child: MonthView(
-              monthSettings: widget.monthSettings,
-              onSelected: (index) {
-                setState(() {
-                  _isMonthOpened = false;
-                });
-                _pageController.animateToPage(
-                  index,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              },
+          Positioned.fill(
+            top: 50,
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: AnimatedClipRect(
+                open: _isMonthOpened,
+                child: MonthView(
+                    monthSettings: widget.monthSettings,
+                    onSelected: _onMonthSelected),
+              ),
             ),
           ),
+          Positioned.fill(
+            top: 50,
+            child: Align(
+              alignment: Alignment.topRight,
+              child: AnimatedClipRect(
+                open: _isYearOpened,
+                child: YearView(year: 2024, onYearSelected: _onYearSelected),
+              ),
+            ),
+          )
         ],
       ),
+    );
+  }
+
+  int _setPage(DateTime date) {
+    return (date.year * 12 + date.month) - (2000 * 12);
+  }
+
+  DateTime _getDate(int page) {
+    int year = (page ~/ 12) + 2000;
+    int month = page % 12;
+    return DateTime(year, month);
+  }
+
+  void _onMonthTap() {
+    setState(() {
+      _isYearOpened = false;
+      _isMonthOpened = !_isMonthOpened;
+    });
+  }
+
+  void _onYearTap() {
+    setState(() {
+      _isMonthOpened = false;
+      _isYearOpened = !_isYearOpened;
+    });
+  }
+
+  void _onMonthSelected(int index) {
+    setState(() {
+      _isMonthOpened = false;
+    });
+    final currentDate = _getDate(_pageController.page!.toInt());
+    _pageController.animateToPage(
+      _setPage(DateTime(currentDate.year, index + 1)),
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void _onYearSelected(int value) {
+    setState(() {
+      _isYearOpened = false;
+    });
+    final currentDate = _getDate(_pageController.page!.toInt());
+    _pageController.animateToPage(
+      _setPage(DateTime(value, currentDate.month)),
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void _onPreviousMonth() {
+    _pageController.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void _onNextMonth() {
+    _pageController.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
     );
   }
 }

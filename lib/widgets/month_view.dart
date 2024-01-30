@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:cool_datepicker/models/day_of_week.dart';
 
-typedef OnMonthSelected = void Function(int month);
+typedef OnSelected = void Function(int value);
 
 class MonthView extends StatelessWidget {
-  final OnMonthSelected onSelected;
+  final OnSelected onSelected;
   final MonthSettings monthSettings;
 
   const MonthView({
@@ -28,13 +28,12 @@ class MonthView extends StatelessWidget {
   }
 
   Widget monthWidget(Month month, int index) {
-    return GestureDetector(
+    return InkWell(
       onTap: () => onSelected(index),
       child: Center(
         child: Text(month.text,
             style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontSize: 18,
             )),
       ),
     );
