@@ -1,27 +1,64 @@
-import 'package:cool_datepicker/controllers/datepicker_controller.dart';
-import 'package:cool_datepicker/widgets/animated_clip_rect.dart';
-import 'package:cool_datepicker/widgets/calendar_body.dart';
-import 'package:cool_datepicker/widgets/month_view.dart';
-import 'package:cool_datepicker/widgets/year_view.dart';
+import 'package:cool_datepicker/models/multiple_datepicker_options.dart';
 import 'package:flutter/material.dart';
 
+import 'package:cool_datepicker/controllers/datepicker_controller.dart';
 import 'package:cool_datepicker/models/day_of_week.dart';
+import 'package:cool_datepicker/widgets/animated_clip_rect.dart';
+import 'package:cool_datepicker/widgets/calendar_body.dart';
 import 'package:cool_datepicker/widgets/calendar_header.dart';
+import 'package:cool_datepicker/widgets/month_view.dart';
+import 'package:cool_datepicker/widgets/year_view.dart';
 
-class NewCoolDatepicker extends StatefulWidget {
+class NewCoolDatepicker extends StatelessWidget {
   final WeekSettings weekSettings;
   final MonthSettings monthSettings;
-  const NewCoolDatepicker({
+  final DatepickerOptions? options;
+
+  const NewCoolDatepicker._({
     Key? key,
     required this.weekSettings,
     required this.monthSettings,
+    required this.options,
+  }) : super(key: key);
+
+  // factory multi
+  factory NewCoolDatepicker.multiple({
+    required WeekSettings weekSettings,
+    required MonthSettings monthSettings,
+    DatepickerOptions? options,
+  }) {
+    return NewCoolDatepicker._(
+      weekSettings: weekSettings,
+      monthSettings: monthSettings,
+      options: options,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _NewCoolDatepicker(
+        weekSettings: weekSettings,
+        monthSettings: monthSettings,
+        options: options);
+  }
+}
+
+class _NewCoolDatepicker extends StatefulWidget {
+  final WeekSettings weekSettings;
+  final MonthSettings monthSettings;
+  final DatepickerOptions? options;
+  const _NewCoolDatepicker({
+    Key? key,
+    required this.weekSettings,
+    required this.monthSettings,
+    required this.options,
   }) : super(key: key);
 
   @override
-  State<NewCoolDatepicker> createState() => _NewCoolDatepickerState();
+  State<_NewCoolDatepicker> createState() => _NewCoolDatepickerState();
 }
 
-class _NewCoolDatepickerState extends State<NewCoolDatepicker> {
+class _NewCoolDatepickerState extends State<_NewCoolDatepicker> {
   late final PageController _pageController;
 
   final _datepickerController = DatepickerController();
@@ -81,6 +118,7 @@ class _NewCoolDatepickerState extends State<NewCoolDatepicker> {
                     datepickerController: _datepickerController,
                     weekSettings: widget.weekSettings,
                     selectedDate: date,
+                    options: widget.options,
                   )),
                 ],
               );

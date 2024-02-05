@@ -1,4 +1,5 @@
 import 'package:cool_datepicker/models/day_of_week.dart';
+import 'package:cool_datepicker/models/multiple_datepicker_options.dart';
 import 'package:flutter/material.dart';
 import 'package:cool_datepicker/cool_datepicker.dart';
 import 'package:cool_datepicker/new_cool_datepicker.dart';
@@ -113,7 +114,18 @@ class _MyAppState extends State<MyApp> {
               //   ),
               // ),
               Center(
-                child: NewCoolDatepicker(
+                child: NewCoolDatepicker.multiple(
+                  options: DatepickerOptions(
+                    disabledList: [
+                      DateTime(2024, 2, 22),
+                      DateTime(2024, 2, 12)
+                    ],
+                    disabledRangeList: [
+                      DateTimeRange(
+                          start: DateTime(2024, 1, 1),
+                          end: DateTime(2024, 1, 13))
+                    ],
+                  ),
                   weekSettings: WeekSettings(firstDayOfWeek: WeekDay.monday),
                   monthSettings: MonthSettings.english,
                 ),
