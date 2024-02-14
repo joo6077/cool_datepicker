@@ -1,71 +1,70 @@
-import 'package:cool_datepicker/controllers/range_datepicker_controller.dart';
-import 'package:cool_datepicker/models/multiple_datepicker_options.dart';
-import 'package:cool_datepicker/widgets/calendar_range_body.dart';
 import 'package:flutter/material.dart';
 
-import 'package:cool_datepicker/controllers/datepicker_controller.dart';
+import 'package:cool_datepicker/controllers/datepicker_range_controller.dart';
+import 'package:cool_datepicker/controllers/datepicker_single_controller.dart';
 import 'package:cool_datepicker/models/day_of_week.dart';
+import 'package:cool_datepicker/controllers/datepicker_controller.dart';
 import 'package:cool_datepicker/widgets/animated_clip_rect.dart';
 import 'package:cool_datepicker/widgets/calendar_header.dart';
+import 'package:cool_datepicker/widgets/calendar_range_body.dart';
+import 'package:cool_datepicker/widgets/calendar_single_body.dart';
 import 'package:cool_datepicker/widgets/month_view.dart';
 import 'package:cool_datepicker/widgets/year_view.dart';
 
+typedef _DatepickerBodyBuilder = Widget Function(DateTime date);
+
 class NewCoolDatepicker extends StatelessWidget {
-  final WeekSettings weekSettings;
-  final MonthSettings monthSettings;
-  final DatepickerOptions? options;
+  final DatepickerController settings;
+  final _DatepickerBodyBuilder bodyBuilder;
 
   const NewCoolDatepicker._({
     Key? key,
-    required this.weekSettings,
-    required this.monthSettings,
-    required this.options,
+    required this.settings,
+    required this.bodyBuilder,
   }) : super(key: key);
 
   // factory multi
-  factory NewCoolDatepicker.multiple({
-    required WeekSettings weekSettings,
-    required MonthSettings monthSettings,
-    DatepickerOptions? options,
+  factory NewCoolDatepicker.single({
+    required DatepickerSingleController controller,
   }) {
     return NewCoolDatepicker._(
-      weekSettings: weekSettings,
-      monthSettings: monthSettings,
-      options: options,
+      settings: controller,
+      bodyBuilder: (date) => CalendarSingleBody(
+        selectedDate: date,
+        datepickerController: controller,
+      ),
     );
   }
 
   // factory range
   factory NewCoolDatepicker.range({
-    required WeekSettings weekSettings,
-    required MonthSettings monthSettings,
-    DatepickerOptions? options,
+    required DatepickerRangeController controller,
   }) {
     return NewCoolDatepicker._(
-      weekSettings: weekSettings,
-      monthSettings: monthSettings,
-      options: options,
+      settings: controller,
+      bodyBuilder: (date) => CalendarRangeBody(
+        selectedDate: date,
+        datepickerController: controller,
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return _NewCoolDatepicker(
-        weekSettings: weekSettings,
-        monthSettings: monthSettings,
-        options: options);
+      settings: settings,
+      bodyBuilder: bodyBuilder,
+    );
   }
 }
 
 class _NewCoolDatepicker extends StatefulWidget {
-  final WeekSettings weekSettings;
-  final MonthSettings monthSettings;
-  final DatepickerOptions? options;
+  final DatepickerController settings;
+  final _DatepickerBodyBuilder bodyBuilder;
   const _NewCoolDatepicker({
     Key? key,
-    required this.weekSettings,
-    required this.monthSettings,
-    required this.options,
+    required this.settings,
+    required this.bodyBuilder,
   }) : super(key: key);
 
   @override
@@ -74,8 +73,6 @@ class _NewCoolDatepicker extends StatefulWidget {
 
 class _NewCoolDatepickerState extends State<_NewCoolDatepicker> {
   late final PageController _pageController;
-
-  final _datepickerController = RangeDatepickerController();
 
   bool _isMonthOpened = false;
   bool _isYearOpened = false;
@@ -124,16 +121,12 @@ class _NewCoolDatepickerState extends State<_NewCoolDatepicker> {
                   CalendarHeader(
                     onMonthTap: _onMonthTap,
                     onYearTap: _onYearTap,
-                    month: widget.monthSettings.list[month - 1],
+                    month: widget.settings.monthSettings.list[month - 1],
                     year: year,
                   ),
                   Expanded(
-                      child: CalendarRangeBody(
-                    datepickerController: _datepickerController,
-                    weekSettings: widget.weekSettings,
-                    selectedDate: date,
-                    options: widget.options,
-                  )),
+                    child: widget.bodyBuilder(date),
+                  ),
                 ],
               );
             },
@@ -170,7 +163,8 @@ class _NewCoolDatepickerState extends State<_NewCoolDatepicker> {
             child: SizedBox(
               height: 50,
               child: Row(
-                  children: widget.weekSettings.dayOfWeekList.map((day) {
+                  children:
+                      widget.settings.weekSettings.dayOfWeekList.map((day) {
                 return Expanded(
                   child: Center(
                     child: Text(
@@ -189,7 +183,7 @@ class _NewCoolDatepickerState extends State<_NewCoolDatepicker> {
               child: AnimatedClipRect(
                 open: _isMonthOpened,
                 child: MonthView(
-                    monthSettings: widget.monthSettings,
+                    monthSettings: widget.settings.monthSettings,
                     onSelected: _onMonthSelected),
               ),
             ),

@@ -1,140 +1,91 @@
-import 'package:cool_datepicker/library/utils/date_time_extension.dart';
+import 'package:cool_datepicker/models/date_info_model.dart';
+import 'package:cool_datepicker/models/day_of_week.dart';
 import 'package:flutter/material.dart';
 
 class DatepickerController {
-  final int maxCount;
-  final List<MultipleItem> _selectedDates = [];
+  final WeekSettings weekSettings;
+  final MonthSettings monthSettings;
 
-  final Map<DateTime, List<MultipleItem>> _selectedYearMonthMap = {};
-  List<DateTime> get selectedDates =>
-      _selectedDates.map((e) => e.date).toList();
+  final List<DateTime> disabledList;
+  final List<DateTimeRange> disabledRangeList;
 
-  Map<DateTime, List<MultipleItem>> get selectedYearMonthMap =>
-      _selectedYearMonthMap;
+  final Map<DateTime, List<DateTime>> _disabledDatesMap = {};
 
   DatepickerController({
-    this.maxCount = 3,
-    List<MultipleItem> selectedDates = const [],
+    required this.weekSettings,
+    required this.monthSettings,
+    required this.disabledList,
+    required this.disabledRangeList,
   }) {
-    assert(maxCount > 0, 'maxCount must be greater than 0');
-    assert(selectedDates.length <= maxCount,
-        'selectedDates length must be less than or equal to maxCount');
-    _setInitialSelectedDates(selectedDates);
+    _setDisabledDatesMap();
   }
 
-  void _setInitialSelectedDates(List<MultipleItem> selectedDates) {
-    for (var item in selectedDates) {
-      final dateKey = _monthKey(item.date);
-      if (_selectedYearMonthMap.containsKey(dateKey)) {
-        _selectedYearMonthMap[dateKey]!.add(item);
-      } else {
-        _selectedYearMonthMap[dateKey] = [item];
-      }
-      _selectedDates.add(item);
-    }
+  int getFirstDayOffset(DateTime date) {
+    final firstOfMonth = DateTime(date.year, date.month);
+    return (firstOfMonth.weekday - weekSettings.firstDayOfWeek.index) % 7;
   }
 
-  DateTime _monthKey(DateTime date) => DateTime(date.year, date.month);
-
-  MultipleItem? onSelected(MultipleItem item) {
-    final dateKey = _monthKey(item.date);
-
-    if (_selectedYearMonthMap.containsKey(dateKey)) {
-      if (_selectedYearMonthMap[dateKey]!.contains(item)) {
-        final removeItem = _removeSelectedDate(item);
-        if (item.date.isCurrentMonth(removeItem.date)) {
-          return removeItem;
-        }
-      } else {
-        final removeItem = _addSelectedDate(item);
-        if (removeItem != null && item.date.isCurrentMonth(removeItem.date)) {
-          return removeItem;
+  /// set disabled dates. Key is the year month of the date, value is the list of dates that are disabled
+  void _setDisabledDatesMap() {
+    _disabledDatesMap.clear();
+    for (var range in disabledRangeList) {
+      for (var i = range.start;
+          i.isBefore(range.end);
+          i = i.add(const Duration(days: 1))) {
+        if (_disabledDatesMap.containsKey(i)) {
+          _disabledDatesMap[i]!.add(i);
+        } else {
+          _disabledDatesMap[i] = [i];
         }
       }
-    } else {
-      _selectedYearMonthMap[dateKey] = [item];
-      _selectedDates.add(item);
-      if (_selectedDates.length > maxCount) {
-        final removeItem = _selectedDates.removeAt(0);
-        final removeDateKey = _monthKey(removeItem.date);
-        _selectedYearMonthMap[removeDateKey]!.remove(removeItem);
-        return removeItem;
+    }
+
+    for (var date in disabledList) {
+      if (_disabledDatesMap.containsKey(date)) {
+        _disabledDatesMap[date]!.add(date);
+      } else {
+        _disabledDatesMap[date] = [date];
       }
     }
-
-    return null;
   }
 
-  MultipleItem? _addSelectedDate(MultipleItem item) {
-    final dateKey = _monthKey(item.date);
-    _selectedYearMonthMap[dateKey]!.add(item);
-    _selectedDates.add(item);
+  /// get the disabled dates for the year and month
+  /// returns a list of dates that are disabled
+  List<DateTime> _getDisabledDates(DateTime date) => _disabledDatesMap.entries
+      .where((element) =>
+          element.key.year == date.year && element.key.month == date.month)
+      .map((e) => e.key)
+      .toList();
 
-    if (_selectedDates.length > maxCount) {
-      final removeItem = _selectedDates.removeAt(0);
-      final removeDateKey = _monthKey(removeItem.date);
-      _selectedYearMonthMap[removeDateKey]!.remove(removeItem);
-      return removeItem;
+  List<DateInfoModel?> initializeDate({
+    required DateTime date,
+    required List<DateTime> selectedDates,
+  }) {
+    final lastOfMonth = DateTime(date.year, date.month + 1, 0);
+
+    int startDayOffset = getFirstDayOffset(date);
+    if (startDayOffset < 0) {
+      startDayOffset += 7;
     }
 
-    return null;
+    final lastDay = lastOfMonth.day;
+
+    final disabledDates = _getDisabledDates(date);
+
+    final days = List<DateInfoModel?>.filled(42, null);
+
+    for (var i = 0; i < lastDay; i++) {
+      final day = i + 1;
+      final index = i + startDayOffset;
+      final currentDate = DateTime(date.year, date.month, day);
+      final isDisabled = disabledDates.contains(currentDate);
+      days[index] = DateInfoModel(
+        date: currentDate,
+        index: index,
+        isDisabled: isDisabled,
+      );
+    }
+
+    return days;
   }
-
-  MultipleItem _removeSelectedDate(MultipleItem item) {
-    final dateKey = _monthKey(item.date);
-    _selectedYearMonthMap[dateKey]!.remove(item);
-    _selectedDates.remove(item);
-
-    return item;
-  }
-}
-
-class MultipleItem {
-  final DateTime date;
-  final int index;
-  final bool isDisabled;
-  final bool isSelected;
-
-  const MultipleItem({
-    required this.date,
-    required this.index,
-    this.isDisabled = false,
-    this.isSelected = false,
-  });
-
-  MultipleItem copyWith({
-    DateTime? date,
-    int? index,
-    bool? isDisabled,
-    bool? isSelected,
-    int? timestamp,
-    AnimationController? controller,
-  }) {
-    return MultipleItem(
-      date: date ?? this.date,
-      index: index ?? this.index,
-      isDisabled: isDisabled ?? this.isDisabled,
-      isSelected: isSelected ?? this.isSelected,
-    );
-  }
-
-  // toString
-  @override
-  String toString() {
-    return 'DatepickerMultipleItem(date: $date, index: $index, isDisabled: $isDisabled, isSelected: $isSelected)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is MultipleItem &&
-        other.date == date &&
-        other.index == index &&
-        other.isDisabled == isDisabled &&
-        other.isSelected == isSelected;
-  }
-
-  @override
-  int get hashCode => date.hashCode ^ index.hashCode;
 }

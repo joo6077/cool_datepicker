@@ -1,8 +1,10 @@
+import 'package:cool_datepicker/models/day_of_week.dart';
+import 'package:cool_datepicker/controllers/datepicker_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cool_datepicker/enums/range_type.dart';
 
-class RangeDatepickerController {
+class DatepickerRangeController extends DatepickerController {
   DateTimeRange? selectedRange;
 
   RangeItemModel? _startItem;
@@ -11,7 +13,32 @@ class RangeDatepickerController {
   DateTime? get startDate => _startItem?.date;
   DateTime? get endDate => _endItem?.date;
 
-  RangeDatepickerController({this.selectedRange});
+  DatepickerRangeController({
+    this.selectedRange,
+    super.weekSettings = const WeekSettings(),
+    super.monthSettings = MonthSettings.english,
+    super.disabledList = const [],
+    super.disabledRangeList = const [],
+  }) {
+    _setInitialValue();
+  }
+
+  void _setInitialValue() {
+    if (selectedRange != null) {
+      final firstDayOffset = getFirstDayOffset(selectedRange!.start);
+
+      _startItem = RangeItemModel(
+        date: selectedRange!.start,
+        isDisabled: false,
+        index: firstDayOffset + selectedRange!.start.day - 1,
+      );
+      _endItem = RangeItemModel(
+        date: selectedRange!.end,
+        isDisabled: false,
+        index: firstDayOffset + selectedRange!.end.day - 1,
+      );
+    }
+  }
 
   RangeAnimationController? setRange(RangeItemModel rangeItem) {
     if (_startItem != null && _endItem != null) {
@@ -19,6 +46,7 @@ class RangeDatepickerController {
       final endItem = _endItem;
       _startItem = rangeItem;
       _endItem = null;
+
       return RangeAnimationController(
         forward: _startItem,
         reverse: [

@@ -1,23 +1,17 @@
-import 'package:cool_datepicker/controllers/range_datepicker_controller.dart';
+import 'package:cool_datepicker/controllers/datepicker_range_controller.dart';
 import 'package:cool_datepicker/enums/range_type.dart';
 import 'package:cool_datepicker/library/utils/date_time_extension.dart';
-import 'package:cool_datepicker/models/day_of_week.dart';
-import 'package:cool_datepicker/models/multiple_datepicker_options.dart';
 import 'package:cool_datepicker/widgets/animated_range_selected_item.dart';
 import 'package:flutter/material.dart';
 
 class CalendarRangeBody extends StatefulWidget {
-  final WeekSettings weekSettings;
   final DateTime selectedDate;
-  final RangeDatepickerController datepickerController;
-  final DatepickerOptions? options;
+  final DatepickerRangeController datepickerController;
 
   const CalendarRangeBody({
     Key? key,
-    required this.weekSettings,
     required this.selectedDate,
     required this.datepickerController,
-    required this.options,
   }) : super(key: key);
 
   @override
@@ -43,40 +37,40 @@ class _CalendarBodyState extends State<CalendarRangeBody>
     final startDate = widget.datepickerController.startDate;
     final endDate = widget.datepickerController.endDate;
 
-    _items = widget.options?.initializeSingle(
-          date: widget.selectedDate,
-          firstDayOfWeek: widget.weekSettings.firstDayOfWeek,
-          selectedDates: [],
-        ).map(
-          (e) {
-            if (e == null) {
-              return null;
-            }
+    _items = widget.datepickerController.initializeDate(
+      date: widget.selectedDate,
+      selectedDates: [],
+    ).map(
+      (e) {
+        if (e == null) {
+          return null;
+        }
 
-            final isStartDate = startDate?.isSameDay(e.date) ?? false;
-            final isEndDate = endDate?.isSameDay(e.date) ?? false;
-            final isBetween = startDate != null &&
-                endDate != null &&
-                e.date.isBetween(startDate, endDate);
+        print('e.date: ${e.index}');
 
-            return RangeDateModel(
-              dateController: AnimationController(
-                vsync: this,
-                value: isStartDate || isEndDate ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 200),
-              ),
-              date: e.date,
-              index: e.index,
-              isDisabled: e.isDisabled,
-              rangeController: AnimationController(
-                vsync: this,
-                value: isBetween || isStartDate || isEndDate ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 50),
-              ),
-            );
-          },
-        ).toList() ??
-        [];
+        final isStartDate = startDate?.isSameDay(e.date) ?? false;
+        final isEndDate = endDate?.isSameDay(e.date) ?? false;
+        final isBetween = startDate != null &&
+            endDate != null &&
+            e.date.isBetween(startDate, endDate);
+
+        return RangeDateModel(
+          dateController: AnimationController(
+            vsync: this,
+            value: isStartDate || isEndDate ? 1.0 : 0.0,
+            duration: const Duration(milliseconds: 200),
+          ),
+          date: e.date,
+          index: e.index,
+          isDisabled: e.isDisabled,
+          rangeController: AnimationController(
+            vsync: this,
+            value: isBetween || isStartDate || isEndDate ? 1.0 : 0.0,
+            duration: const Duration(milliseconds: 50),
+          ),
+        );
+      },
+    ).toList();
   }
 
   @override
