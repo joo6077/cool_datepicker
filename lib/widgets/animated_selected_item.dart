@@ -26,24 +26,10 @@ class AnimatedSelectedItemState extends State<AnimatedSelectedItem> {
         children: [
           widget.item,
           Positioned.fill(
-            child: Align(
-              alignment: Alignment.center,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(9999),
-                child: AnimatedBuilder(
-                  animation: widget.controller,
-                  builder: (_, child) {
-                    return Align(
-                      alignment: Alignment.center,
-                      widthFactor: widget.controller.value,
-                      heightFactor: widget.controller.value,
-                      child: child,
-                    );
-                  },
-                  child: widget.selectedItem,
-                ),
-              ),
-            ),
+            child: ScaleTransition(
+                scale: CurvedAnimation(
+                    parent: widget.controller, curve: Curves.easeOutBack),
+                child: widget.selectedItem),
           ),
         ],
       ),

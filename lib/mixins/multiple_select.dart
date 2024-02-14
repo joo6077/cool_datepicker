@@ -1,7 +1,7 @@
+import 'package:cool_datepicker/controllers/datepicker_controller.dart';
 import 'package:cool_datepicker/library/utils/date_time_extension.dart';
-import 'package:flutter/material.dart';
 
-class DatepickerController {
+class MultipleSelect {
   final int maxCount;
   final List<MultipleItem> _selectedDates = [];
 
@@ -12,7 +12,7 @@ class DatepickerController {
   Map<DateTime, List<MultipleItem>> get selectedYearMonthMap =>
       _selectedYearMonthMap;
 
-  DatepickerController({
+  MultipleSelect({
     this.maxCount = 3,
     List<MultipleItem> selectedDates = const [],
   }) {
@@ -87,54 +87,4 @@ class DatepickerController {
 
     return item;
   }
-}
-
-class MultipleItem {
-  final DateTime date;
-  final int index;
-  final bool isDisabled;
-  final bool isSelected;
-
-  const MultipleItem({
-    required this.date,
-    required this.index,
-    this.isDisabled = false,
-    this.isSelected = false,
-  });
-
-  MultipleItem copyWith({
-    DateTime? date,
-    int? index,
-    bool? isDisabled,
-    bool? isSelected,
-    int? timestamp,
-    AnimationController? controller,
-  }) {
-    return MultipleItem(
-      date: date ?? this.date,
-      index: index ?? this.index,
-      isDisabled: isDisabled ?? this.isDisabled,
-      isSelected: isSelected ?? this.isSelected,
-    );
-  }
-
-  // toString
-  @override
-  String toString() {
-    return 'DatepickerMultipleItem(date: $date, index: $index, isDisabled: $isDisabled, isSelected: $isSelected)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is MultipleItem &&
-        other.date == date &&
-        other.index == index &&
-        other.isDisabled == isDisabled &&
-        other.isSelected == isSelected;
-  }
-
-  @override
-  int get hashCode => date.hashCode ^ index.hashCode;
 }

@@ -6,14 +6,12 @@ import 'package:flutter/scheduler.dart';
 class DatepickerOptions implements TickerProvider {
   final List<DateTime> disabledList;
   final List<DateTimeRange> disabledRangeList;
-  final int maxCount;
 
   final Map<DateTime, List<DateTime>> _disabledDatesMap = {};
 
   DatepickerOptions({
     this.disabledList = const [],
     this.disabledRangeList = const [],
-    this.maxCount = 1,
   }) {
     _setDisabledDatesMap();
   }
@@ -50,7 +48,7 @@ class DatepickerOptions implements TickerProvider {
       .map((e) => e.key)
       .toList();
 
-  List<DatepickerMultipleItem?> initializeDays({
+  List<MultipleItem?> initializeDays({
     required DateTime date,
     required WeekDay firstDayOfWeek,
     required List<DateTime> selectedDates,
@@ -67,7 +65,7 @@ class DatepickerOptions implements TickerProvider {
 
     final disabledDates = _getDisabledDates(date);
 
-    final days = List<DatepickerMultipleItem?>.filled(42, null);
+    final days = List<MultipleItem?>.filled(42, null);
 
     for (var i = 0; i < lastDay; i++) {
       final day = i + 1;
@@ -75,12 +73,11 @@ class DatepickerOptions implements TickerProvider {
       final currentDate = DateTime(date.year, date.month, day);
       final isDisabled = disabledDates.contains(currentDate);
       final isSelected = selectedDates.contains(currentDate);
-      days[index] = DatepickerMultipleItem(
+      days[index] = MultipleItem(
         date: currentDate,
         index: index,
         isDisabled: isDisabled,
         isSelected: isSelected,
-        timestamp: currentDate.millisecondsSinceEpoch,
       );
     }
 

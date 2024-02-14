@@ -1,10 +1,11 @@
+import 'package:cool_datepicker/controllers/range_datepicker_controller.dart';
 import 'package:cool_datepicker/models/multiple_datepicker_options.dart';
+import 'package:cool_datepicker/widgets/calendar_range_body.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cool_datepicker/controllers/datepicker_controller.dart';
 import 'package:cool_datepicker/models/day_of_week.dart';
 import 'package:cool_datepicker/widgets/animated_clip_rect.dart';
-import 'package:cool_datepicker/widgets/calendar_body.dart';
 import 'package:cool_datepicker/widgets/calendar_header.dart';
 import 'package:cool_datepicker/widgets/month_view.dart';
 import 'package:cool_datepicker/widgets/year_view.dart';
@@ -23,6 +24,19 @@ class NewCoolDatepicker extends StatelessWidget {
 
   // factory multi
   factory NewCoolDatepicker.multiple({
+    required WeekSettings weekSettings,
+    required MonthSettings monthSettings,
+    DatepickerOptions? options,
+  }) {
+    return NewCoolDatepicker._(
+      weekSettings: weekSettings,
+      monthSettings: monthSettings,
+      options: options,
+    );
+  }
+
+  // factory range
+  factory NewCoolDatepicker.range({
     required WeekSettings weekSettings,
     required MonthSettings monthSettings,
     DatepickerOptions? options,
@@ -61,7 +75,7 @@ class _NewCoolDatepicker extends StatefulWidget {
 class _NewCoolDatepickerState extends State<_NewCoolDatepicker> {
   late final PageController _pageController;
 
-  final _datepickerController = DatepickerController();
+  final _datepickerController = RangeDatepickerController();
 
   bool _isMonthOpened = false;
   bool _isYearOpened = false;
@@ -114,7 +128,7 @@ class _NewCoolDatepickerState extends State<_NewCoolDatepicker> {
                     year: year,
                   ),
                   Expanded(
-                      child: CalendarBody(
+                      child: CalendarRangeBody(
                     datepickerController: _datepickerController,
                     weekSettings: widget.weekSettings,
                     selectedDate: date,

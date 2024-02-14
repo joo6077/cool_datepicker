@@ -55,7 +55,6 @@ class _CalendarBodyState extends State<CalendarBody>
               date: e.date,
               index: e.index,
               isDisabled: e.isDisabled,
-              timestamp: e.timestamp,
             );
           },
         ).toList() ??
@@ -126,14 +125,13 @@ class _CalendarBodyState extends State<CalendarBody>
   }
 }
 
-class DatepickerDateItem extends DatepickerMultipleItem {
+class DatepickerDateItem extends MultipleItem {
   final AnimationController controller;
 
   DatepickerDateItem({
     required super.date,
     required super.index,
     required super.isDisabled,
-    required super.timestamp,
     required this.controller,
   });
 }
