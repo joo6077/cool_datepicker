@@ -33,7 +33,7 @@ class _CalendarBodyState extends State<CalendarBody>
     final currentMonthDays = widget.datepickerController.selectedYearMonthMap[
         DateTime(widget.selectedDate.year, widget.selectedDate.month)];
     _items = widget.options
-            ?.initializeDays(
+            ?.initializeSingle(
           date: widget.selectedDate,
           firstDayOfWeek: widget.weekSettings.firstDayOfWeek,
           selectedDates: widget.datepickerController.selectedDates,

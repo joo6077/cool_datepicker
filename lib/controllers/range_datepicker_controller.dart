@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:cool_datepicker/enums/range_type.dart';
 
 class RangeDatepickerController {
-  final DateTimeRange? selectedRange;
+  DateTimeRange? selectedRange;
 
   RangeItemModel? _startItem;
   RangeItemModel? _endItem;
+
+  DateTime? get startDate => _startItem?.date;
+  DateTime? get endDate => _endItem?.date;
 
   RangeDatepickerController({this.selectedRange});
 

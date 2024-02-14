@@ -1,4 +1,6 @@
 import 'package:cool_datepicker/controllers/datepicker_controller.dart';
+import 'package:cool_datepicker/controllers/range_datepicker_controller.dart';
+import 'package:cool_datepicker/library/utils/date_time_extension.dart';
 import 'package:cool_datepicker/models/day_of_week.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -48,7 +50,7 @@ class DatepickerOptions implements TickerProvider {
       .map((e) => e.key)
       .toList();
 
-  List<MultipleItem?> initializeDays({
+  List<MultipleItem?> initializeSingle({
     required DateTime date,
     required WeekDay firstDayOfWeek,
     required List<DateTime> selectedDates,
@@ -83,6 +85,68 @@ class DatepickerOptions implements TickerProvider {
 
     return days;
   }
+
+  // RangeModel initializeRange({
+  //   required DateTime date,
+  //   required WeekDay firstDayOfWeek,
+  //   required RangeDatepickerController datepickerController,
+  //   DateTime? startDate,
+  //   DateTime? endDate,
+  // }) {
+  //   final firstOfMonth = DateTime(date.year, date.month);
+  //   final lastOfMonth = DateTime(date.year, date.month + 1, 0);
+
+  //   int startDayOffset = (firstOfMonth.weekday - firstDayOfWeek.index) % 7;
+  //   if (startDayOffset < 0) {
+  //     startDayOffset += 7;
+  //   }
+
+  //   final lastDay = lastOfMonth.day;
+
+  //   final disabledDates = _getDisabledDates(date);
+
+  //   final days = List<RangeItemModel?>.filled(42, null);
+
+  //   int startDateIndex = -1;
+  //   int endDateIndex = -1;
+
+  //   for (var i = 0; i < lastDay; i++) {
+  //     final day = i + 1;
+  //     final index = i + startDayOffset;
+  //     final currentDate = DateTime(date.year, date.month, day);
+  //     final isDisabled = disabledDates.contains(currentDate);
+  //     days[index] = RangeItemModel(
+  //       date: currentDate,
+  //       index: index,
+  //       isDisabled: isDisabled,
+  //     );
+
+  //     if (startDate != null && startDate.isSameDay(currentDate)) {
+  //       startDateIndex = index;
+  //     }
+
+  //     if (endDate != null && endDate.isSameDay(currentDate)) {
+  //       endDateIndex = index;
+  //     }
+  //   }
+
+  //   return RangeModel(
+  //     start: startDate != null
+  //         ? RangeItemModel(
+  //             date: startDate,
+  //             index: startDateIndex,
+  //             isDisabled: false,
+  //           )
+  //         : null,
+  //     end: endDate != null
+  //         ? RangeItemModel(
+  //             date: endDate,
+  //             index: endDateIndex,
+  //             isDisabled: false,
+  //           )
+  //         : null,
+  //   );
+  // }
 
   @override
   Ticker createTicker(TickerCallback onTick) => Ticker(onTick);
